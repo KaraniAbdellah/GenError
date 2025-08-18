@@ -1,6 +1,14 @@
-
 datasource db {
-  privider = "mongodb",
-  url = env("DB_URL")
+  url = env("DATABASE_URL"),
+  provider = "mongodb"
 }
 
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  name String?
+}
