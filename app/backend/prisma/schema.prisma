@@ -1,14 +1,25 @@
-datasource db {
-  url = env("DATABASE_URL"),
-  provider = "mongodb"
-}
-
-
 generator client {
   provider = "prisma-client-js"
 }
 
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
 model User {
-  id Int @id @default(autoincrement())
-  name String?
+  user_id Int       @default(auto())
+  name    String
+  Session Session[]
+}
+
+model Session {
+  // this will be replace _id this exit in MongoDB
+  // id String @id @default(auto()) @map("_id") @db.ObjectId
+  session_id   Int     @default(auto())
+  session_name String?
+  user         User    @relation(fields: [user_id], references: [user_id])
+  user_id      Int // relation scalar field (used in the `@relation` attribute above)
+
+  @@id([user_id, session_id])
 }
