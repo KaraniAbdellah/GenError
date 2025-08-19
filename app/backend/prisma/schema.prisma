@@ -8,18 +8,36 @@ datasource db {
 }
 
 model User {
-  user_id Int       @default(auto())
-  name    String
-  Session Session[]
+  id       String     @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  email    String
+  password String
+  Sessions Sessions[]
 }
 
-model Session {
+model Sessions {
   // this will be replace _id this exit in MongoDB
   // id String @id @default(auto()) @map("_id") @db.ObjectId
-  session_id   Int     @default(auto())
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
   session_name String?
-  user         User    @relation(fields: [user_id], references: [user_id])
-  user_id      Int // relation scalar field (used in the `@relation` attribute above)
-
-  @@id([user_id, session_id])
+  user         User      @relation(fields: [user_id], references: [id])
+  user_id      String    @db.ObjectId
+  Prompts      Prompts[]
 }
+
+model Prompts {
+  id             String           @id @default(auto()) @map("_id") @db.ObjectId
+  prompt_text    String
+  session        Sessions         @relation(fields: [session_id], references: [id])
+  session_id     String           @db.ObjectId
+  AlterGenerated AlterGenerated[]
+}
+
+model AlterGenerated {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  alters    String[]
+  prompt    Prompts  @relation(fields: [prompt_id], references: [id])
+  prompt_id String   @db.ObjectId
+}
+
+
