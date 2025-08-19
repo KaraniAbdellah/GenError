@@ -8,6 +8,7 @@ const userClient = new PrismaClient().user;
 
 // Get User
 export const addUser = async (req: Request, res: Response) => {
+  console.log("Hello From Add User");
   try {
     const newUser: userType = {
       name: "Ahmed",
