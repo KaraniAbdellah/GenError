@@ -56,4 +56,11 @@
 //     name String?
 // }
 
-  
+ 
+
+// What is Next After Create Model 
+/*
+    Migration:
+        for MongoDb: "npx prisma db push"
+        npx prisma client // generate prisma/client folder that contain functions (create, ...)
+*/

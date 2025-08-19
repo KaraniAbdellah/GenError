@@ -1,4 +1,9 @@
+import { Session } from "inspector/promises"
+
 export interface User {
-  id: number;
-  name: string;
+  name: string,
+  email: string,
+  password: string,
+  Sessions?: Session[]
 }
+

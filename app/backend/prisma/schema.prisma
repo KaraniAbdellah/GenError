@@ -18,7 +18,7 @@ model User {
 model Session {
   // this will be replace _id this exit in MongoDB
   // id String @id @default(auto()) @map("_id") @db.ObjectId
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId // type of id is ObjectId
   session_name String?
   user         User     @relation(fields: [user_id], references: [id])
   user_id      String   @db.ObjectId

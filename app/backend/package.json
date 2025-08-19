@@ -7,5 +7,8 @@
     "express": "^5.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "chokidar-cli": "^3.0.0"
   }
 }
