@@ -9,9 +9,9 @@ datasource db {
 
 model User {
   id       String     @id @default(auto()) @map("_id") @db.ObjectId
-  name     String
-  email    String
-  password String
+  name     String 
+  email    String @unique
+  password String @unique
   Sessions Sessions[]
 }
 
@@ -30,10 +30,10 @@ model Prompts {
   prompt_text    String
   session        Sessions         @relation(fields: [session_id], references: [id])
   session_id     String           @db.ObjectId
-  AlterGenerated AlterGenerated[]
+  Alerts Alerts[]
 }
 
-model AlterGenerated {
+model Alerts {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   alters    String[]
   prompt    Prompts  @relation(fields: [prompt_id], references: [id])
