@@ -5,8 +5,8 @@
         Prisma Migrate: Declarative data modeling & migration system
         Prisma Studio: GUI to view and edit data in your database
 
-    npm install express @prisma/client dotenv
-    npx i prisma --> Initialize Prisma 
+    "npm install express @prisma/client dotenv"
+    "npx i prisma --> Initialize Prisma"
 */
 
 // Basic Concepts
@@ -16,14 +16,12 @@
     Models → They represent tables in the database
 */
 
-
 // Migrations
 /*
     Migration = a way to update your database when you change your schema.
         Example: You add a new field age in User. The database does not know it yet.
-        Prisma migration will create/update the table so the database matches your schema.
+            Prisma migration will create/update the table so the database matches your schema.
 */
-
 
 // What We need to Know --> is how to use schema.prisma
 /*
@@ -43,41 +41,21 @@
             ==> we run this command each time we add new attribute in our model     
 */
 
-// datasource db {
-//     url = env("DATABASE_URL"),
-//     provider = "mongodb"
-// }
-
-// generator client {
-//     provider = "prisma-client-js" 
-// }
-// model User {
-//     id Int @id @default(autoincrement())
-//     name String?
-// }
-
- 
-
-// What is Next After Create Model 
+// What is Next After Create Model
 /*
+    Connect to Database:
+        in prisma we do not need to connect to database
+        when we run PrismaClient ---> they connect auto
+
     Migration:
         for MongoDb: "npx prisma db push"
-        npx prisma client // generate prisma/client folder that contain functions (create, ...)
+        "npx prisma client"
+            --> generate prisma/client folder that contain functions (create, ...)
 */
-
 
 // So In Backend With Prisma And Ts We have Buit-in types in prisma
-// so we can use this type without create another types
+// so we can use this type without create another types with ts
 /*
-    import {
-    User as prismaUserType,
-    Session as prismaSessionType,
-    Prompt as prismaPromptType,
-    Output as prismaOutputType,
-    } from "@prisma/client";
+    import { User as prismaUserType, } from "@prisma/client";
     export type userType = Omit<prismaUserType, "id">;
-    export type sessionType = Omit<prismaSessionType, "id">;
-    export type promptType = Omit<prismaPromptType, "id">;
-    export type outputType = Omit<prismaOutputType, "id">;
 */
-
