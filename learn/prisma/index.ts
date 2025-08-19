@@ -64,3 +64,20 @@
         for MongoDb: "npx prisma db push"
         npx prisma client // generate prisma/client folder that contain functions (create, ...)
 */
+
+
+// So In Backend With Prisma And Ts We have Buit-in types in prisma
+// so we can use this type without create another types
+/*
+    import {
+    User as prismaUserType,
+    Session as prismaSessionType,
+    Prompt as prismaPromptType,
+    Output as prismaOutputType,
+    } from "@prisma/client";
+    export type userType = Omit<prismaUserType, "id">;
+    export type sessionType = Omit<prismaSessionType, "id">;
+    export type promptType = Omit<prismaPromptType, "id">;
+    export type outputType = Omit<prismaOutputType, "id">;
+*/
+
