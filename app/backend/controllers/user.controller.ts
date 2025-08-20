@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 
 // import types
@@ -7,8 +7,12 @@ import { userType } from "../models/types";
 const userClient = new PrismaClient().user;
 
 // Get User
-export const addUser = async (req: Request, res: Response) => {
+export const addUser = async (
+  req: Request,
+  res: Response,
+) => {
   console.log("Hello From Add User");
+  console.log((req as any).user);
   try {
     const newUser: userType = {
       name: "Ahmed",

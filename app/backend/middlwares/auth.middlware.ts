@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import { Token } from "typescript";
 
 export const authMiddlware = (
   req: Request,
@@ -7,7 +6,7 @@ export const authMiddlware = (
   next: NextFunction
 ) => {
 
-    // const token: Token = req.cookies.token;
+  (req as any).user = "Hello";
 
-    next();
+  next();
 };
