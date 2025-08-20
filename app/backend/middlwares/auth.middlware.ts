@@ -1,15 +1,14 @@
 import { NextFunction, Request, Response } from "express";
-// import { AuthRequest } from "../custom_types/AuthRequest";
 
 export const authMiddlware = (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  // req.user = {
-  //   name: "Abdellah",
-  //   email: "abdellahkarani@gmail.com",
-  //   password: "AB29Sk0{",
-  // };
+  req.user = {
+    name: "Abdellah",
+    email: "abdellahkarani@gmail.com",
+    password: "AB29Sk0{",
+  };
   return next();
 };
