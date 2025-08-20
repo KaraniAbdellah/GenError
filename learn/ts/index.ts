@@ -12,3 +12,20 @@ type User = {
 };
 
 type Admin = Omit<User, "id">; // this type wihout id
+
+// namespace in typescipt
+/*
+  is like way to group classes interfaces, ...
+*/
+namespace Auth {
+  export interface User {
+    id: string;
+    name: string;
+  }
+
+  export class Service {
+    login(user: User) {
+      /*...*/
+    }
+  }
+}
