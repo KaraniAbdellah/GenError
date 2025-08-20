@@ -3,16 +3,14 @@ import { PrismaClient } from "@prisma/client";
 
 // import types
 import { userType } from "../models/types";
+// import { AuthRequest } from "../custom_types/AuthRequest";
 
 const userClient = new PrismaClient().user;
 
 // Get User
-export const addUser = async (
-  req: Request,
-  res: Response,
-) => {
+export const addUser = async (req: Request, res: Response) => {
   console.log("Hello From Add User");
-  console.log((req as any).user);
+  // console.log(req.user);
   try {
     const newUser: userType = {
       name: "Ahmed",
