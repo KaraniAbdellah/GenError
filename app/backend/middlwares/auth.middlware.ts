@@ -1,7 +1,8 @@
 import { NextFunction, Request, RequestHandler, Response } from "express";
-import { userType } from "../models/types";
+import { JwtPayload } from "jsonwebtoken";
 import jwt from "jsonwebtoken";
-import { Payload } from "@prisma/client/runtime/library";
+
+import config from "../config/config";
 
 export const authMiddlware: RequestHandler = (
   req: Request,
@@ -9,28 +10,19 @@ export const authMiddlware: RequestHandler = (
   next: NextFunction
 ) => {
   try {
-    const token = req.cookies.token; // this return an object
+    const token: string = req.cookies.token;
     if (!token) {
       return res.status(404).json({ message: "Token Does Not Found" });
     }
-    const decoded: Payload = jwt.verify(token, process.env.SECRET_KEY);
-    if (!decoded) {
+    const decoded: JwtPayload | string = jwt.verify(token, config.secret_key);
+    if (!decoded || typeof decoded === "string") {
       return res
         .status(400)
         .json({ message: "Decoding Token Failed Operation!" });
     }
-
     req.user = decoded.user;
-
-    next();
-
-    req.user = {
-      name: "Abdellah",
-      email: "abdellahkarani@gmail.com",
-      password: "AB29Sk0{",
-    };
     return next();
   } catch (error) {
-    res.status(401).send("Please authenticate");
+    return res.status(401).send("Please authenticate");
   }
 };
