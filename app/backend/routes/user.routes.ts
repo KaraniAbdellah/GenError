@@ -13,4 +13,5 @@ const user_route: Router = express.Router();
 user_route.post("/addUser", authMiddlware, addUser);
 
 
+
 export default user_route;
