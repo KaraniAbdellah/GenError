@@ -1,4 +1,4 @@
-import { NextFunction, Request, RequestHandler, Response } from "express";
+import { Request, RequestHandler, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 
 // import types
@@ -27,6 +27,10 @@ export const addUser: RequestHandler = async (req: Request, res: Response) => {
       return res.status(200).json({ user: user });
     }
 
+    // Generate A Token for user
+
+    // Encrypt The Password
+
     // Push User to Database
     const auth_user = await userClient.create({
       // prisma create new user with id (auto), ...
@@ -36,13 +40,15 @@ export const addUser: RequestHandler = async (req: Request, res: Response) => {
           include: {
             Prompts: {
               include: {
-                Output: true
-              }
-            }
-          }
-        }
-      }
+                Output: true,
+              },
+            },
+          },
+        },
+      },
     });
+    
+
     return res.status(200).send({ user: auth_user });
   } catch (error) {
     if (error instanceof Error) {
