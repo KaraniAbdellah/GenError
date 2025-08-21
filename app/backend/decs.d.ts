@@ -1,7 +1,10 @@
 import { userType } from "./models/types";
 
-declare namespace Express {
-  interface Request {
-    user?: userType;
+// add user attribute to exsting type Express exactly Request
+declare global {
+  namespace Express {
+    interface Request {
+      user?: userType;
+    }
   }
 }

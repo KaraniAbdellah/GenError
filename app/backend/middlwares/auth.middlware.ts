@@ -1,4 +1,7 @@
 import { NextFunction, Request, Response } from "express";
+import { userType } from "../models/types";
+
+
 
 export const authMiddlware = (
   req: Request,
