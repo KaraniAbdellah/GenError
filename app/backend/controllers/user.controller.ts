@@ -9,14 +9,24 @@ const userClient = new PrismaClient().user;
 
 // Get User
 export const addUser: RequestHandler = async (req: Request, res: Response) => {
-  console.log("Hello From Add User");
-  // console.log(req.user);
   try {
+    // const newUser: userType = req.body;
     const newUser: userType = {
       name: "Ahmed",
       email: "a@gmail.com",
       password: "1010292",
     };
+
+    // Check if user already login --> we can not push into database
+    const user: userType | null = await userClient.findUnique({
+      where: {
+        email: newUser.email,
+      },
+    });
+    if (user) {
+      return res.status(200).json({message: "User Already Exit"});
+    }
+
     // Push User to Database
     const auth_user = await userClient.create({
       // prisma create new user with id, ...
