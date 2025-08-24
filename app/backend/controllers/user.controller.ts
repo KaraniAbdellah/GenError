@@ -1,5 +1,6 @@
 import { Request, RequestHandler, Response } from "express";
 import { PrismaClient } from "@prisma/client";
+import generateToken from "../utils/generateToken";
 
 // import types
 import { userType } from "../models/types";
@@ -28,8 +29,11 @@ export const addUser: RequestHandler = async (req: Request, res: Response) => {
     }
 
     // Generate A Token for user
+    generateToken(user);
 
     // Encrypt The Password
+    const hashedPassword = await bcrypt.hash(user.password, 10);
+    user.password = hashedPassword;
 
     // Push User to Database
     const auth_user = await userClient.create({
@@ -47,7 +51,6 @@ export const addUser: RequestHandler = async (req: Request, res: Response) => {
         },
       },
     });
-    
 
     return res.status(200).send({ user: auth_user });
   } catch (error) {
