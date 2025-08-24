@@ -12,6 +12,7 @@
     "typescript": "^5.9.2"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/jsonwebtoken": "^9.0.10",
     "chokidar-cli": "^3.0.0"
   }
