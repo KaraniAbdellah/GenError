@@ -29,15 +29,8 @@ export const addUser: RequestHandler = async (req: Request, res: Response) => {
       return res.status(200).json({ user: user });
     }
 
-    // Generate A Token for user
-    generateToken(user);
-
-    // Encrypt The Password
-    const hashedPassword = await bcrypt.hash(user.password, 10);
-    user.password = hashedPassword;
-
     // Push User to Database
-    const auth_user = await userClient.create({
+    const auth_user: userType = await userClient.create({
       // prisma create new user with id (auto), ...
       data: newUser,
       include: {
@@ -52,6 +45,13 @@ export const addUser: RequestHandler = async (req: Request, res: Response) => {
         },
       },
     });
+
+    // Encrypt The Password
+    const hashedPassword = await bcrypt.hash(auth_user.password, 10);
+    auth_user.password = hashedPassword;
+
+    // Generate A Token for user
+    generateToken(auth_user);
 
     return res.status(200).send({ user: auth_user });
   } catch (error) {
