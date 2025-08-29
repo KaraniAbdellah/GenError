@@ -15,9 +15,10 @@ export const addUser: RequestHandler = async (req: Request, res: Response) => {
     // const newUser: userType = req.body;
     const newUser: userType = {
       name: "Ahmed",
-      email: "a2@gmail.com",
-      password: "19192002",
+      email: "a1200@gmail.com",
+      password: "19192339002",
     };
+    console.log(newUser);
 
     // Check if user already login --> we can not push into database
     const user: userType | null = await userClient.findUnique({
@@ -28,6 +29,10 @@ export const addUser: RequestHandler = async (req: Request, res: Response) => {
     if (user) {
       return res.status(200).json({ user: user });
     }
+
+    // Encrypt The Password
+    const hashedPassword = await bcrypt.hash(newUser.password, 10);
+    newUser.password = hashedPassword;
 
     // Push User to Database
     const auth_user: userType = await userClient.create({
@@ -45,10 +50,7 @@ export const addUser: RequestHandler = async (req: Request, res: Response) => {
         },
       },
     });
-
-    // Encrypt The Password
-    const hashedPassword = await bcrypt.hash(auth_user.password, 10);
-    auth_user.password = hashedPassword;
+    console.log(auth_user);
 
     // Generate A Token for user
     generateToken(auth_user);
