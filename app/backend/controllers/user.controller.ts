@@ -12,12 +12,12 @@ const userClient = new PrismaClient().user;
 // Get User
 export const addUser: RequestHandler = async (req: Request, res: Response) => {
   try {
-    // const newUser: userType = req.body;
-    const newUser: userType = {
-      name: "Ahmed",
-      email: "a1200@gmail.com",
-      password: "19192339002",
-    };
+    const newUser: userType = req.body;
+    // const newUser: userType = {
+    //   name: "Ahmed",
+    //   email: "a1200@gmail.com",
+    //   password: "19192339002",
+    // };
 
     // Check if user already login --> we can not push into database
     const user: userType | null = await userClient.findUnique({
