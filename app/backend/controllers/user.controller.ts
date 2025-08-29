@@ -18,16 +18,15 @@ export const addUser: RequestHandler = async (req: Request, res: Response) => {
       email: "a1200@gmail.com",
       password: "19192339002",
     };
-    console.log(newUser);
 
     // Check if user already login --> we can not push into database
     const user: userType | null = await userClient.findUnique({
       where: {
-        email: newUser.email,
+        email: newUser.email
       },
     });
     if (user) {
-      return res.status(200).json({ user: user });
+      return res.status(200).json({ user: user, message: "user already exit" });
     }
 
     // Encrypt The Password
@@ -50,12 +49,12 @@ export const addUser: RequestHandler = async (req: Request, res: Response) => {
         },
       },
     });
-    console.log(auth_user);
 
     // Generate A Token for user
-    generateToken(auth_user);
+    const token = generateToken(auth_user);
+    console.log(token);
 
-    return res.status(200).send({ user: auth_user });
+    return res.status(200).send({ user_token: token });
   } catch (error) {
     if (error instanceof Error) {
       return res.status(500).send({ message: error.message });
