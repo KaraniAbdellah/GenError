@@ -7,6 +7,7 @@ import cors from "cors";
 import user_route from "./routes/user.routes";
 import session_route from "./routes/session.routes";
 import prompt_route from "./routes/prompt.routes";
+import output_route from "./routes/output.routes";
 
 const app = express();
 const PORT = config.PORT;
@@ -19,6 +20,7 @@ app.use(cors({
 app.use("/GenError/user", user_route);
 app.use("/GenError/session", session_route);
 app.use("/GenError/prompt", prompt_route);
+app.use("/GenError/output", output_route);
 
 app.listen(PORT, () => {
   console.log(`Server Running in PORT ${PORT}`);
