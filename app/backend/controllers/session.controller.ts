@@ -3,11 +3,12 @@ import { userType } from "../models/types";
 
 export const addSession: RequestHandler = (req: Request, res: Response) => {
   try {
-    const user: userType | undefined = req.user;
+    const user: userType = req.user;
     console.log(user);
     // Create a Session
     const newSession = {
-      
+      sessionName: "Name From Error",
+      user_id: 
     }
     
 
