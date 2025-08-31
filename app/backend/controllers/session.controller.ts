@@ -6,6 +6,7 @@ export const addSession: RequestHandler = (req: Request, res: Response) => {
     // Get User
     const user: userType | undefined = req.user;
     console.log("username", user);
+    // const
 
   } catch (error) {
     if (error instanceof Error) {
