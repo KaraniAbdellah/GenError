@@ -26,7 +26,7 @@ export const authMiddlware: RequestHandler = (
       name: decoded?.name,
       email: decoded?.email
     }
-    // req.user = userDetected;
+    req.user = userDetected;
     return next();
   } catch (error) {
     return res.status(401).send("Please authenticate");
