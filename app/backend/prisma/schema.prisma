@@ -19,7 +19,7 @@ model Session {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId // type of id is ObjectId
   session_name String?
   user         User     @relation(fields: [user_id], references: [id])
-  user_id      String   @db.ObjectId @unique
+  user_id      String   @db.ObjectId
   Prompts      Prompt[]
 }
 
@@ -27,7 +27,7 @@ model Prompt {
   id          String  @id @default(auto()) @map("_id") @db.ObjectId
   prompt_text String
   session     Session @relation(fields: [session_id], references: [id])
-  session_id  String  @db.ObjectId @unique
+  session_id  String  @db.ObjectId
   Output      Output?
 }
 

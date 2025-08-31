@@ -44,7 +44,7 @@ export const addSession: RequestHandler = async (
         .status(404)
         .send({ message: "can not create session object in database" });
     }
-    return res.status(200).send(newSession);
+    return res.status(200).send(SessionPush);
   } catch (error) {
     if (error instanceof Error) {
       return res.status(500).send({ message: error.message });
