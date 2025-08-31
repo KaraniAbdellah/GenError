@@ -10,7 +10,7 @@ import { authMiddlware } from "../middlwares/auth.middlware";
 
 const prompt_route: Router = express.Router();
 
-prompt_route.get("/addPrompt",  authMiddlware, userMiddlware, addPrompt);
+prompt_route.post("/addPrompt",  authMiddlware, userMiddlware, addPrompt);
 
 
 

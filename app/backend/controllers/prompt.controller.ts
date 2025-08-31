@@ -1,8 +1,8 @@
 import { Request, Response, RequestHandler } from "express";
-import { sessionCreateType, sessionType, userType } from "../models/types";
+import { promptType, userType, promptCreateType } from "../models/types";
 import { PrismaClient } from "@prisma/client";
 
-const sessionClient = new PrismaClient().session;
+const promptClient = new PrismaClient().prompt;
 
 export const addPrompt: RequestHandler = async (
   req: Request,
@@ -15,34 +15,30 @@ export const addPrompt: RequestHandler = async (
       return res.status(404).send({ message: "user ot found" });
     }
     // Create a Session
-    const newSession: sessionCreateType | null = {
-      session_name: req.body.session_name,
-      user_id: user.id,
+    const newPrompt: promptCreateType | null = {
+      prompt_text: req.body.prompt_text,
+      session_id: req.body.session_id,
     };
 
-    if (!newSession) {
+    if (!newPrompt) {
       return res
         .status(404)
         .send({ message: "session attribute does not exit" });
     }
 
     // Add Session in Database
-    const SessionPush: sessionType | null = await sessionClient.create({
-      data: newSession,
+    const PromptPush: promptType | null = await promptClient.create({
+      data: newPrompt,
       include: {
-        Prompts: {
-          include: {
-            Output: true,
-          },
-        },
+        Output: true,
       },
     });
-    if (!SessionPush) {
+    if (!PromptPush) {
       return res
         .status(404)
         .send({ message: "can not create session object in database" });
     }
-    return res.status(200).send(newSession);
+    return res.status(200).send(PromptPush);
   } catch (error) {
     if (error instanceof Error) {
       return res.status(500).send({ message: error.message });
