@@ -17,8 +17,9 @@ export const addSession: RequestHandler = async (
     // Create a Session
     const newSession: sessionCreateType | undefined = {
       session_name: req.body.session_name,
-      user_id: user.id,
+      user_id: user.id
     };
+
 
     if (!newSession) {
       return res

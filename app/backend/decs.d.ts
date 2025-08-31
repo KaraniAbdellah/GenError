@@ -8,7 +8,7 @@ declare global {
     export interface Request {
       user?: userType;
     }
-    export interface Response {
+    export  interface Response {
       user?: userType
     }
   }

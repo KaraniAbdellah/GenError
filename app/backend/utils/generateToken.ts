@@ -6,9 +6,9 @@ const generateToken = (user: userType | null) => {
   if (user) {
     const userToSend = {
       name: user?.name,
-      email: user?.email
-    }
-    const token: string = jwt.sign(userToSend, config.secret_key, {
+      email: user?.email,
+    };
+    const token: string = jwt.sign({ user: userToSend }, config.secret_key, {
       expiresIn: config.token_time,
     });
     return token;

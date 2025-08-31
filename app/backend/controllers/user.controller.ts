@@ -56,11 +56,14 @@ export const addUser: RequestHandler = async (req: Request, res: Response) => {
 export const getUser: RequestHandler = async (req: Request, res: Response) => {
   try {
     const AuthUser: userCreateType | undefined = req.user;
-    console.log(AuthUser);
+
+    if (!AuthUser) {
+      return res.status(404).send({message: "User Not Found"});
+    }
 
     const user: userType | null = await userClient.findUnique({
       where: {
-        email: AuthUser?.email,
+        email: AuthUser.email,
       },
       include: {
         Sessions: {

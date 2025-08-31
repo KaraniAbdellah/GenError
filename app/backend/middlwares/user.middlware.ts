@@ -1,6 +1,7 @@
 import { NextFunction, Request, RequestHandler, Response } from "express";
 import { userType } from "../models/types";
 import { PrismaClient } from "@prisma/client";
+import { isUint16Array } from "util/types";
 
 const userClient = new PrismaClient().user;
 export const userMiddlware: RequestHandler = async (
@@ -9,7 +10,7 @@ export const userMiddlware: RequestHandler = async (
   next: NextFunction
 ) => {
   try {
-    const user = req.user;
+    const user: userType | undefined = req.user;
     if (!user) {
       return res.status(200).send({ message: "user not found" });
     }
@@ -25,10 +26,7 @@ export const userMiddlware: RequestHandler = async (
         .status(404)
         .send({ message: "user does not exit in database" });
     }
-    req.user = {
-      name: IsUserExit.name, 
-      email: IsUserExit.email
-    };
+    req.user = IsUserExit;
     return next();
   } catch (error) {
     return res.status(401).send("Please authenticate");
