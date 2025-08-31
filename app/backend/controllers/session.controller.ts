@@ -1,5 +1,5 @@
 import { Request, Response, RequestHandler } from "express";
-import { sessionType, userType } from "../models/types";
+import { sessionCreateType, sessionType, userType } from "../models/types";
 import { PrismaClient } from "@prisma/client";
 
 const sessionClient = new PrismaClient().session;
@@ -15,11 +15,10 @@ export const addSession: RequestHandler = async (
       return res.status(404).send({ message: "user ot found" });
     }
     // Create a Session
-    const newSession: sessionType| undefined = {
+    const newSession: sessionCreateType | undefined = {
       session_name: req.body.session_name,
-      user_email: user.email,
+      user_id: user.id,
     };
-
 
     if (!newSession) {
       return res
@@ -28,7 +27,7 @@ export const addSession: RequestHandler = async (
     }
 
     // Add Session in Database
-    const SessionPush = await sessionClient.create({
+    const SessionPush: sessionType | undefined = await sessionClient.create({
       data: newSession,
       include: {
         Prompts: {

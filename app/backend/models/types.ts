@@ -1,4 +1,3 @@
-// types.ts
 import {
   User as prismaUserType,
   Session as prismaSessionType,

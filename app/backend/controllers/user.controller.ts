@@ -1,18 +1,13 @@
 import { Request, RequestHandler, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import generateToken from "../utils/generateToken";
-import { userType } from "../models/types";
+import { userType, userCreateType } from "../models/types";
 
 const userClient = new PrismaClient().user;
 
 export const addUser: RequestHandler = async (req: Request, res: Response) => {
   try {
-    const newUser: userType = req.body;
-    // const newUser: userType = {
-    //   name: "Ahmed",
-    //   email: "a1200@gmail.com",
-    //   password: "19192339002",
-    // };
+    const newUser: userCreateType = req.body;
 
     // Check if user already login --> we can not push into database
     const user: userType | null = await userClient.findUnique({
@@ -60,9 +55,9 @@ export const addUser: RequestHandler = async (req: Request, res: Response) => {
 
 export const getUser: RequestHandler = async (req: Request, res: Response) => {
   try {
-    const AuthUser: userType | undefined = req.user;
+    const AuthUser: userCreateType | undefined = req.user;
     console.log(AuthUser);
-    // Check if user already login
+
     const user: userType | null = await userClient.findUnique({
       where: {
         email: AuthUser?.email,
@@ -79,13 +74,13 @@ export const getUser: RequestHandler = async (req: Request, res: Response) => {
         },
       },
     });
-    // if (!user) {
-    //   return res.status(404).send({ message: "we can not find user" });
-    // }
+    if (!user) {
+      return res.status(404).send({ message: "we can not find user" });
+    }
 
-    // return res
-    //   .status(200)
-    //   .send({ user: user, message: "user already exit" });
+    return res
+      .status(200)
+      .send({ user: user, message: "user already exit" });
   } catch (error) {
     if (error instanceof Error) {
       return res.status(500).send({ message: error.message });
