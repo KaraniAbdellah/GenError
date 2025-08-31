@@ -25,7 +25,10 @@ export const userMiddlware: RequestHandler = async (
         .status(404)
         .send({ message: "user does not exit in database" });
     }
-    req.user = IsUserExit;
+    req.user = {
+      name: IsUserExit.name, 
+      email: IsUserExit.email
+    };
     return next();
   } catch (error) {
     return res.status(401).send("Please authenticate");

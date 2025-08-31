@@ -1,17 +1,20 @@
 import { Request, Response, RequestHandler } from "express";
-import { userType } from "../models/types";
+import { sessionType, userType } from "../models/types";
 
 export const addSession: RequestHandler = (req: Request, res: Response) => {
   try {
-    const user: userType = req.user;
+    const user: userType | undefined = req.user;
     console.log(user);
-    // Create a Session
-    const newSession = {
-      sessionName: "Name From Error",
-      user_id: 
+    if (!user) {
+      return res.status(404).send({ message: "user ot found" });
     }
-    
+    // Create a Session
+    const newSession: sessionType = {
+      session_name: "Name From Error",
+      user_email: user.email,
+    };
 
+    console.log(newSession);
   } catch (error) {
     if (error instanceof Error) {
       return res.status(500).send({ message: error.message });
