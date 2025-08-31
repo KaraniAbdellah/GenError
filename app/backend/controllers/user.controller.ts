@@ -22,7 +22,8 @@ export const addUser: RequestHandler = async (req: Request, res: Response) => {
     // Check if user already login --> we can not push into database
     const user: userType | null = await userClient.findUnique({
       where: {
-        email: newUser.email
+        email: newUser.email,
+        name: newUser.name
       },
     });
     if (user) {

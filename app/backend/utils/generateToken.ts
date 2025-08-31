@@ -4,7 +4,11 @@ import config from "../config/config";
 
 const generateToken = (user: userType | null) => {
   if (user) {
-    const token: string = jwt.sign({ user: user?.name }, config.secret_key, {
+    const userToSend = {
+      name: user?.name,
+      email: user?.email
+    }
+    const token: string = jwt.sign(userToSend, config.secret_key, {
       expiresIn: config.token_time,
     });
     return token;
