@@ -7,11 +7,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// We are using sign in with google --> we do not need the password [just {name, email}]
 model User {
   id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  name     String @unique
+  name     String    @unique
   email    String    @unique
-  password String
   Sessions Session[]
 }
 

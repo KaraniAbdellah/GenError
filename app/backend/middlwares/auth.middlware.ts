@@ -16,12 +16,17 @@ export const authMiddlware: RequestHandler = (
       return res.status(404).json({ message: "Token Does Not Found" });
     }
     const decoded: JwtPayload | string = jwt.verify(token, config.secret_key);
+    console.log(decoded);
     if (!decoded || typeof decoded === "string") {
       return res
-        .status(400)
-        .json({ message: "Decoding Token Failed Operation!" });
+      .status(400)
+      .json({ message: "Decoding Token Failed Operation!" });
     }
-    req.user = decoded.user;
+    const userDetected = {
+      name: decoded?.name,
+      email: decoded?.email
+    }
+    // req.user = userDetected;
     return next();
   } catch (error) {
     return res.status(401).send("Please authenticate");

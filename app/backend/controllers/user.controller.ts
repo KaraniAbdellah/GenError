@@ -31,10 +31,6 @@ export const addUser: RequestHandler = async (req: Request, res: Response) => {
       return res.status(200).send({ user_token: token, message: "user already exit" });
     }
 
-    // Encrypt The Password
-    const hashedPassword = await bcrypt.hash(newUser.password, 10);
-    newUser.password = hashedPassword;
-
     // Push User to Database
     const auth_user: userType = await userClient.create({
       // prisma create new user with id (auto), ...
