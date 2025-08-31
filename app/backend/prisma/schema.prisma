@@ -21,7 +21,7 @@ model Session {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId // type of id is ObjectId
   session_name String?
   user         User     @relation(fields: [user_email], references: [email])
-  user_email        String
+  user_email        String @unique
   Prompts      Prompt[]
 }
 
