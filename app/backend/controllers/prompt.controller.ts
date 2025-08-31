@@ -9,6 +9,10 @@ export const addPrompt: RequestHandler = async (
   res: Response
 ) => {
   try {
+    if (!req.body.prompt_text || !req.body.session_id) {
+      return res.status(400).send({message: "all attribute required"});
+    }
+
     const user: userType | undefined = req.user;
     console.log(user);
     if (!user) {

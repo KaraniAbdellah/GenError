@@ -9,6 +9,11 @@ export const addOutput: RequestHandler = async (
   res: Response
 ) => {
   try {
+
+    if (!req.body.messages || !req.body.prompt_id) {
+      return res.status(400).send({message: "all attribute required"});
+    }
+
     const user: userType | undefined = req.user;
     if (!user) {
       return res.status(404).send({ message: "user ot found" });
