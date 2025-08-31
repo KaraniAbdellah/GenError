@@ -4,9 +4,9 @@ import { userType } from "../models/types";
 export const addSession: RequestHandler = (req: Request, res: Response) => {
   try {
     // Get User
-    const user: userType | undefined = req.user;
+    // const user: userType | undefined = req.user;
 
-    // we should be add session --> but session contain prompts and also output
+    // console.log(user);
 
   } catch (error) {
     if (error instanceof Error) {

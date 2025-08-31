@@ -9,8 +9,9 @@ export const authMiddlware: RequestHandler = (
   res: Response,
   next: NextFunction
 ) => {
+  console.log(req.headers.authorization?.split(" ")[1]);
   try {
-    const token: string = req.cookies.token;
+    const token: string= req.headers.authorization?.split(" ")[1];
     if (!token) {
       return res.status(404).json({ message: "Token Does Not Found" });
     }
@@ -20,7 +21,7 @@ export const authMiddlware: RequestHandler = (
         .status(400)
         .json({ message: "Decoding Token Failed Operation!" });
     }
-    req.user = decoded.user;
+    // req.user = decoded.user;
     return next();
   } catch (error) {
     return res.status(401).send("Please authenticate");

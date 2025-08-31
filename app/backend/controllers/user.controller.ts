@@ -26,7 +26,8 @@ export const addUser: RequestHandler = async (req: Request, res: Response) => {
       },
     });
     if (user) {
-      return res.status(200).json({ user: user, message: "user already exit" });
+    const token = generateToken(user);
+      return res.status(200).send({ user_token: token, message: "user already exit" });
     }
 
     // Encrypt The Password
@@ -52,7 +53,6 @@ export const addUser: RequestHandler = async (req: Request, res: Response) => {
 
     // Generate A Token for user
     const token = generateToken(auth_user);
-    console.log(token);
 
     return res.status(200).send({ user_token: token });
   } catch (error) {
