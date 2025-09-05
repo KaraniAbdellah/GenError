@@ -25,7 +25,13 @@ yet when we run the project it still works fine, like nothing is wrong.
     // We can use: "npm audit fix force"
 
 --> But what audit do exactly:
+    in runing, audit look at packages and send all of them npm security 
+    database for check each package is have any vulunarbitl and then audit generate 
+    repport for all them (packages, there vulunarify, version, status [low, modern ,...])
 
+
+--> for best practcie in big react project:
+    .......
 */
 
 
