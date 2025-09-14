@@ -1,3 +1,7 @@
 /* Nothing Yet */
 
 
+html {
+    scroll-behavior: smooth;
+}
+

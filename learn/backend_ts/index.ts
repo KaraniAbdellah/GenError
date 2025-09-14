@@ -35,3 +35,8 @@ yet when we run the project it still works fine, like nothing is wrong.
 */
 
 
+// npm vs pnpm (Performant npm)
+/*
+    - 
+*/
+
