@@ -1,35 +1,18 @@
 import "./index.css";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+import MainSidebarComponent from "./features/Sidebar/components/MainSidebarComponent";
+import MainComponent from "./features/Main/components/MainComponent";
+import Header from "./features/Header/components/Header";
+import Footer from "./features/Footer/components/Footer";
 
 function App() {
   return (
     <>
-      <AlertDialog>
-        <AlertDialogTrigger>Open</AlertDialogTrigger>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-            <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction>Continue</AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      <Header></Header>
+      <div className="flex justify-start">
+        <MainSidebarComponent></MainSidebarComponent>
+        <MainComponent></MainComponent>
+      </div>
+      <Footer></Footer>
     </>
   );
 }
