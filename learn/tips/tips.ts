@@ -11,11 +11,7 @@
     --> Upgrade NodeJs via NVM: https://youtu.be/lI9sehdDyM4?si=TDfXay3JdA9jrDK3
 */
 
-// deffrence between devDependencies and dependcies
-/*
-    devDependencies: all packages nedded for local development
-    dependcies: all packages your app nedded
-*/
+
 
 // Problem in NVM
 /*
@@ -33,4 +29,11 @@
             CTRL + X + Y
         --> source ~/.bashrc
         --> nvm --version
+*/
+
+
+// deffrence between devDependencies and dependcies
+/*
+    devDependencies: all packages nedded for local development
+    dependcies: all packages your app nedded
 */
