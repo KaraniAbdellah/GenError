@@ -1,8 +1,7 @@
-import React from 'react';
 
 const MainComponent = () => {
     return (
-        <div>
+        <div className='bg-red-400'>
             <h1>What is Today's Problem!</h1>
             <input type="text" />
         </div>
