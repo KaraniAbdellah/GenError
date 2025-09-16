@@ -1,8 +1,8 @@
 
 const MainComponent = () => {
     return (
-        <div className='bg-red-400 w-[80%]'>
-            <h1>What is Today's Problem!</h1>
+        <div className='bg-zinc-800 w-[80%] p-2'>
+            <h1 className="text-white">What is Today's Problem!</h1>
             <input type="text" />
         </div>
     );

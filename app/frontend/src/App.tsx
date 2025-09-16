@@ -6,9 +6,9 @@ import Footer from "./features/Footer/components/Footer";
 
 function App() {
   return (
-    <div className="h-screen">
+    <div className="h-screen bg-zinc-800">
       <Header></Header>
-      <div className="flex justify-start h-[calc(100vh-60px)]">
+      <div className="flex justify-start h-[calc(100vh-61px)]">
         <MainSidebarComponent></MainSidebarComponent>
         <MainComponent></MainComponent>
       </div>
