@@ -16,7 +16,7 @@ const SideBarList = () => {
           {chatItems.map((item, index) => (
             <button 
               key={index}
-              className="w-full text-left px-3 py-2 text-white hover:bg-gray-700 rounded-md transition-colors text-sm truncate"
+              className="cursor-pointer w-full text-left px-3 py-2 text-white hover:bg-zinc-900 rounded-md transition-colors text-sm truncate"
             >
               <div className="flex items-center gap-2">
                 <span className="text-xs">💬</span>
