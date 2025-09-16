@@ -5,7 +5,11 @@
 
 html {
     scroll-behavior: smooth;
+    font-family: "JetBrains Mono", monospace;
+    font-optical-sizing: auto;
 }
+
+
 
 @theme inline {
     --radius-sm: calc(var(--radius) - 4px);
@@ -115,11 +119,11 @@ html {
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+    * {
+        @apply border-border outline-ring/50;
     }
-  body {
-    @apply bg-background text-foreground;
+
+    body {
+        @apply bg-background text-foreground;
     }
 }
-

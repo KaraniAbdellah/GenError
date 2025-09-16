@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="h-screen">
       <Header></Header>
-      <div className="flex justify-start h-[calc(100vh-100px)]">
+      <div className="flex justify-start h-[calc(100vh-60px)]">
         <MainSidebarComponent></MainSidebarComponent>
         <MainComponent></MainComponent>
       </div>
