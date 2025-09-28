@@ -34,7 +34,6 @@ export default function Page() {
             </Breadcrumb>
           </div>
         </header>
-        
       </SidebarInset>
     </SidebarProvider>
   );

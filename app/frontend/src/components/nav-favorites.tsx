@@ -4,7 +4,6 @@ import {
   ArrowUpRight,
   Link,
   MoreHorizontal,
-  StarOff,
   Trash2,
 } from "lucide-react"
 
@@ -60,11 +59,6 @@ export function NavFavorites({
                 side={isMobile ? "bottom" : "right"}
                 align={isMobile ? "end" : "start"}
               >
-                <DropdownMenuItem>
-                  <StarOff className="text-muted-foreground" />
-                  <span>Remove from Favorites</span>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <Link className="text-muted-foreground" />
                   <span>Copy Link</span>
