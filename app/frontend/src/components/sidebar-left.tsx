@@ -1,12 +1,9 @@
 import * as React from "react";
 import {
-  Blocks,
-  Calendar,
   Command,
   Home,
   User,
   MessageCircleQuestion,
-  Settings2,
   Sparkles,
   Trash2,
 } from "lucide-react";
@@ -15,7 +12,6 @@ import { NavUser } from "@/components/nav-user";
 import { NavFavorites } from "@/components/nav-favorites";
 import { NavMain } from "@/components/nav-main";
 import { NavSecondary } from "@/components/nav-secondary";
-import { NavWorkspaces } from "@/components/nav-workspaces";
 import { TeamSwitcher } from "@/components/team-switcher";
 import {
   Sidebar,
@@ -51,8 +47,7 @@ const data = {
       icon: Sparkles,
     },
   ],
-
-  favorites: [
+  favorites: [ // sessions
     {
       name: "Project Management & Task Tracking",
       url: "#",

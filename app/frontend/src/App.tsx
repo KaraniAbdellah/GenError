@@ -1,5 +1,4 @@
 import "./index.css";
-
 import Page from "./pages/Page";
 
 function App() {
