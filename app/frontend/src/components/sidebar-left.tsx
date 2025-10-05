@@ -30,21 +30,26 @@ const data = {
   ],
   navMain: [
     {
-      title: "Home",
+      title: "Ask AI",
       url: "#",
+      icon: Sparkles,
+    },
+    {
+      title: "Home",
+      url: "/",
       icon: Home,
       isActive: true,
     },
     {
       title: "About",
-      url: "#",
+      url: "/about",
       icon: User,
       badge: "10",
     },
     {
-      title: "Ask AI",
-      url: "#",
-      icon: Sparkles,
+      title: "Help",
+      url: "/help",
+      icon: MessageCircleQuestion,
     },
   ],
   favorites: [ // sessions
@@ -99,18 +104,7 @@ const data = {
       emoji: "✅",
     },
   ],
-  navSecondary: [
-    {
-      title: "Trashs",
-      url: "#",
-      icon: Trash2,
-    },
-    {
-      title: "Help",
-      url: "#",
-      icon: MessageCircleQuestion,
-    },
-  ],
+  
 };
 
 const user_data = {
@@ -132,7 +126,6 @@ export function SidebarLeft({
       </SidebarHeader>
       <SidebarContent>
         <NavFavorites favorites={data.favorites} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarRail />
       <SidebarHeader className="border-sidebar-border h-16 border-b">
