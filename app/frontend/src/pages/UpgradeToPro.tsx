@@ -1,7 +1,7 @@
 const UpgradeToPro = () => {
     return (
         <div>
-            Plans
+            No Upgrade KNow We Are In Free Version..
         </div>
     );
 }

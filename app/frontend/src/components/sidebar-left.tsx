@@ -5,13 +5,11 @@ import {
   User,
   MessageCircleQuestion,
   Sparkles,
-  Trash2,
 } from "lucide-react";
 
 import { NavUser } from "@/components/nav-user";
 import { NavFavorites } from "@/components/nav-favorites";
 import { NavMain } from "@/components/nav-main";
-import { NavSecondary } from "@/components/nav-secondary";
 import { TeamSwitcher } from "@/components/team-switcher";
 import {
   Sidebar,
@@ -104,7 +102,6 @@ const data = {
       emoji: "✅",
     },
   ],
-  
 };
 
 const user_data = {
