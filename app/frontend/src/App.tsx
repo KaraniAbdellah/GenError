@@ -7,12 +7,13 @@ import UpgradeToPro from "./pages/UpgradeToPro";
 import Login from "./pages/Login";
 import Account from "./pages/Account";
 import PrivateRoutes from "./routes/PrivateRoutes";
+import Test from "./pages/test";
 
 function App() {
   return (
     <div className="h-screen bg-zinc-800 w-full">
       <BrowserRouter>
-        <Routes>
+        {/* <Routes>
           <Route element={<PrivateRoutes />}>
             <Route path="/" element={<Page />}></Route>
           </Route>
@@ -21,7 +22,9 @@ function App() {
           <Route path="/upgrade" element={<UpgradeToPro />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/account" element={<Account />}></Route>
-        </Routes>
+        </Routes> */}
+        <Test></Test>
+        <Page></Page>
       </BrowserRouter>
     </div>
   );
