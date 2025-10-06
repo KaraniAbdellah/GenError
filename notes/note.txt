@@ -1,4 +1,5 @@
 the idea is to type an error and we are going to generate a message for this error to display it to user.
+// the idea is to give custom message to user
 
 
 nich: all developers

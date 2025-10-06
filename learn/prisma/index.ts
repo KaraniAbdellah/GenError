@@ -1,61 +1,35 @@
-// Prisma
+// Prisma Introduction
 /*
-    Prisma is a next-generation ORM for Interaction with Database [like mongoose]:
-        Prisma Client: Auto-generated and type-safe query builder for Node.js & TypeScript
-        Prisma Migrate: Declarative data modeling & migration system
-        Prisma Studio: GUI to view and edit data in your database
-
-    "npm install express @prisma/client dotenv"
-    "npx i prisma --> Initialize Prisma"
+    Prisma like mongoose (use to interact with database)
+    but prisma can intercat with more then +12 database not like mongoose just mongoDB
 */
 
-// Basic Concepts
+// Concepts In Prisma
 /*
-    Prisma Client → It’s the tool you use in your code to talk to your database. Example: prisma.user.findMany() gets all users.
-    Prisma Schema → A file (schema.prisma) where you describe your database models (tables, fields, relations).
-    Models → They represent tables in the database
+    Schema change → Migration → Prisma Client update → Database updated → Use in code
+
+    -- Prisma Schame: A file (schema.prisma) that contain out structure
+    -- Model: Represents a table in my database
+    -- Migration: way to update database when shcema changed
+    -- Prisma Client: A API that offre a lot functions to intercat with database like (findMany(), ...)
+    -- Prisma Studio: A GUI to view and edit data in your database
+    -- Generator: create Prisma Client API from your schema
+
+    Flow: Change schema → Run migration → Generate client → Use in code
 */
 
-// Migrations
+// How we Can Work With Prisma
 /*
-    Migration = a way to update your database when you change your schema.
-        Example: You add a new field age in User. The database does not know it yet.
-            Prisma migration will create/update the table so the database matches your schema.
+    - We Create Schama and we define our database structure in file called schema.prisma
+
+    - We Update Client APi:
+        --> npx prisma generate
+
+    - Update database:
+        --> for SQL: npx prisma migrate dev --name <migration-name>
+        --> for MongoDB: npx prisma db push
+            NOTE: if we already generate prisma client --> 
+            we need just to run "npx prisma db push" it will be
+            regenerate Prisma Client API 
 */
 
-// What We need to Know --> is how to use schema.prisma
-/*
-    In this file we connect to database and we create models
-    generator client {
-        --> prisam create a client API based on this schema
-        --> Generator:
-            ==>  is programm that take prisma schema as an input and make output
-                the famous generator if prisma-client
-            ==> is important because each time we changee the schame generator
-                called by "npx prisma generate"
-            ==> Generator generate client folder that contain functions "create, ...."
-                for each schema
-        --> provider if "prisma-client-js" if provider that offre function like insert(), update(), create(), ...
-        --> we need another script if we added a new index:
-            npx prisma migrate dev --name <migration-name>   
-            ==> we run this command each time we add new attribute in our model     
-*/
-
-// What is Next After Create Model
-/*
-    Connect to Database:
-        in prisma we do not need to connect to database
-        when we run PrismaClient ---> they connect auto
-
-    Migration:
-        for MongoDb: "npx prisma db push"
-        "npx prisma client"
-            --> generate prisma/client folder that contain functions (create, ...)
-*/
-
-// So In Backend With Prisma And Ts We have Buit-in types in prisma
-// so we can use this type without create another types with ts
-/*
-    import { User as prismaUserType, } from "@prisma/client";
-    export type userType = Omit<prismaUserType, "id">;
-*/
