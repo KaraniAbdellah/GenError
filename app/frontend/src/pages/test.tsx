@@ -1,17 +1,21 @@
 // This page for test APIS
 const Test = () => {
+  const apiKey: string = import.meta.env.VITE_MODEL_AI_KEY;
+  const prompt: string = "What is the probleem here?";
   return (
     <div className="text-white">
       ✅ User Data in Good <br />
-      -- Session We Need \ session_name \ <br /> 
+      -- Session We Need \ session_name \ <br />
       -- Prompt We Need \ prompt_text: this by user \ <br />
-      -- Output We Need \ based on prompt_text we generate some custom error messages, explanation \ <br />
+      -- Output We Need \ based on prompt_text we generate some custom error
+      messages, explanation \ <br />
+      The Goal is to Give prompt and we need to generate custom errors messages
+      4 messages and message for developer <br />
+      Let's Get The Model that do this: {apiKey}
 
-      The Goal is to Give prompt and we need to generate custom errors messages 4 messages and message for developer
+      <br /><br /><br /><br />
 
-
-    Let's Get The Model that do this
-
+      
     </div>
   );
 };
