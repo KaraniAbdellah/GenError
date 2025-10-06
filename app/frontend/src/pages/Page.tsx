@@ -1,16 +1,18 @@
-import { SidebarLeft } from "@/components/sidebar-left"
+import { SidebarLeft } from "@/components/sidebar-left";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbPage,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
+} from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
+import Main from "@/buit_component/Main";
+
 
 export default function Page() {
   return (
@@ -27,13 +29,13 @@ export default function Page() {
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem>
-                  <BreadcrumbPage className="line-clamp-1">
-                  </BreadcrumbPage>
+                  <BreadcrumbPage className="line-clamp-1"></BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
           </div>
         </header>
+        <Main></Main>
       </SidebarInset>
     </SidebarProvider>
   );
