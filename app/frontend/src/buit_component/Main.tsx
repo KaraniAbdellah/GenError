@@ -9,13 +9,29 @@ const Main = () => {
   ];
 
   const messagesWithCode = [
-    {text: "This field cannot be empty.", color: "red", code: "toast.error('This field cannot be empty')"},
-    {text: "Please enter a valid email address.", color: "red", code: "toast.success('Please enter a valid email address')"},
-    {text: "This field cannot be empty.", color: "red", code: "toast.warning('This field cannot be empty')"},
-    {text: "Password must be at least 8 characters.", color: "red", code: "toast.info('Password must be at least 8 characters')"},
+    {
+      text: "This field cannot be empty.",
+      color: "red",
+      code: "toast.error('This field cannot be empty')",
+    },
+    {
+      text: "Please enter a valid email address.",
+      color: "green",
+      code: "toast.success('Please enter a valid email address')",
+    },
+    {
+      text: "This field cannot be empty.",
+      color: "yello",
+      code: "toast.warning('This field cannot be empty')",
+    },
+    {
+      text: "Password must be at least 8 characters.",
+      color: "blue",
+      code: "toast.info('Password must be at least 8 characters')",
+    },
   ];
 
-  const explainCode = "This Error Happen Because of ....";
+  const explanation = "This Error Happen Because of ....";
 
   return (
     <div className="bg-red-100 min-h-[calc(100vh-58px)] p-6 flex flex-col gap-6">
@@ -29,12 +45,10 @@ const Main = () => {
         placeholder="Type your error here..."
       />
 
-      <h2 className="text-gray-700 font-medium">{explainCode}</h2>
+      <h2 className="text-gray-700 font-medium">{explanation}</h2>
 
       <h3 className="text-xl font-semibold text-green-600">Toasts Cart Are:</h3>
-      <div className="flex flex-col gap-3">
-        Mode Code / Mode Text
-      </div>
+      <div className="flex flex-col gap-3">Mode Code / Mode Text</div>
 
       <div className="flex flex-col gap-2">
         {messages.map((userMessage, index) => (
