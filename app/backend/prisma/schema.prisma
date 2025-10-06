@@ -34,6 +34,7 @@ model Prompt {
 model Output {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   messages  String[]
+  explanation String
   prompt    Prompt   @relation(fields: [prompt_id], references: [id])
   prompt_id String   @unique @db.ObjectId
 }

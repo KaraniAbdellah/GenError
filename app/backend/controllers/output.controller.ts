@@ -21,6 +21,7 @@ export const addOutput: RequestHandler = async (
     // Create a output
     const newOutput: outputCreateType | null = {
         messages: req.body.messages,
+        explanation: req.body.explanation,
         prompt_id: req.body.prompt_id,
     };
 

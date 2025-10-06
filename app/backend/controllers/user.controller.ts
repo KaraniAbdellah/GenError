@@ -83,7 +83,7 @@ export const getUser: RequestHandler = async (req: Request, res: Response) => {
 
     return res
       .status(200)
-      .send({ user: user, message: "user already exit" });
+      .send({ ...user, message: "Welcome Again" });
   } catch (error) {
     if (error instanceof Error) {
       return res.status(500).send({ message: error.message });
