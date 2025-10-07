@@ -1,12 +1,12 @@
 import "./index.css";
-import About from "./pages/About";
-import Page from "./pages/Page";
+// import About from "./pages/About";
+// import Page from "./pages/Page";
 import { BrowserRouter, Routes, Route } from "react-router";
-import Help from "./pages/Help";
-import UpgradeToPro from "./pages/UpgradeToPro";
-import Login from "./pages/Login";
-import Account from "./pages/Account";
-import PrivateRoutes from "./routes/PrivateRoutes";
+// import Help from "./pages/Help";
+// import UpgradeToPro from "./pages/UpgradeToPro";
+// import Login from "./pages/Login";
+// import Account from "./pages/Account";
+// import PrivateRoutes from "./routes/PrivateRoutes";
 import Test from "./pages/test";
 
 function App() {
