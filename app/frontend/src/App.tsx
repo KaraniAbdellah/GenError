@@ -1,6 +1,6 @@
 import "./index.css";
 // import About from "./pages/About";
-import Page from "./pages/Page";
+// import Page from "./pages/Page";
 import { BrowserRouter, Routes, Route } from "react-router";
 // import Help from "./pages/Help";
 // import UpgradeToPro from "./pages/UpgradeToPro";
@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router";
 // import Account from "./pages/Account";
 // import PrivateRoutes from "./routes/PrivateRoutes";
 import Test from "./pages/test";
+
 
 function App() {
   return (
@@ -23,8 +24,8 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/account" element={<Account />}></Route>
         </Routes> */}
-        {/* <Test></Test> */}
-        <Page></Page>
+        <Test></Test>
+        {/* <Page></Page> */}
       </BrowserRouter>
     </div>
   );
