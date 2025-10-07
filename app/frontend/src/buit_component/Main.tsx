@@ -57,11 +57,14 @@ const Main = () => {
             className="bg-white px-4 py-2 rounded shadow text-red-600 font-medium"
           >
             {userMessage}
+            HERE WE MUST EXIT FOUR CART WARINIGN, ERROR, INFO, FATAL, DEBUG, TRACE
           </p>
         ))}
       </div>
     </div>
   );
 };
+
+// log levels: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
 
 export default Main;
