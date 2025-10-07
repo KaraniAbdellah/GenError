@@ -1,7 +1,7 @@
 import OpenAI from "openai";
 const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
-  apiKey: apiKey,
+  apiKey: import.meta.env.VITE_MODEL_AI_KEY,
   defaultHeaders: {
     "HTTP-Referer": "http://127.0.0.1:5173/",
     "X-Title": "GenToastError",
@@ -16,7 +16,7 @@ const openai = new OpenAI({
  * @return {[type]}      [return can be array or string based on task]
  */
 
-async function GetThingFromApi(error: string, WhatDoYouNeed: Array) {
+async function GetThingFromApi(error: string, WhatDoYouNeed: string) {
   const MessagePrompt =
     "give four messages to display to user in one lines each message sperate by this ||";
   const ExplinationPrompt = "give me an explination for this error";

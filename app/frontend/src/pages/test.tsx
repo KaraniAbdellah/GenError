@@ -6,7 +6,7 @@ const Test = () => {
   const [explanation, setExplanation] = useState("");
   const apiKey: string = import.meta.env.VITE_MODEL_AI_KEY;
   const prompt: string =
-    "based on this error: An error occurred in the <Test> component, give four messages to display to user in one lines each message sperate by this || and give in latest a simple explination for why this error happen";
+    "based on this error: An error occurred in the <Test> component, give four messages to display to user in one lines each message sperate by this || and give in latest a simple explination for why this error happen and Return your answer in JSON format like this: { 'messages': ['msg1','msg2','msg3','msg4'], 'explanation': '...' and return just json object only";
   const openai = new OpenAI({
     baseURL: "https://openrouter.ai/api/v1",
     apiKey: apiKey,
