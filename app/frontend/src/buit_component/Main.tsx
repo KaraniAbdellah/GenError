@@ -55,7 +55,11 @@ const Main = () => {
             <AutosizeTextarea
               placeholder="This textarea with min height 52 and max height 200."
               maxHeight={200}
-              value={userPrompt.length < 300 ? userPrompt : userPrompt.substring(0, 300)}
+              value={
+                userPrompt.length < 300
+                  ? userPrompt
+                  : userPrompt.substring(0, 299)
+              }
               onChange={(e) => handleUserPromptChange(e)}
               className={userPrompt.length > 300 ? `disabled` : ""}
             />
@@ -64,7 +68,10 @@ const Main = () => {
             <ArrowUpRight />
           </button>
         </div>
-        <p className="text-xs text-right">{userPrompt.length}/300 Character the max is 300 charcter </p>
+        <p className="text-xs text-right">
+          {userPrompt.length < 300 ? userPrompt.length : 300}/300 Character the
+          max is 300 charcter{" "}
+        </p>
       </div>
     </div>
   );
