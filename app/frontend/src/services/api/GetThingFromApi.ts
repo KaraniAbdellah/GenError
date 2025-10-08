@@ -1,42 +1,49 @@
-import OpenAI from "openai";
-const openai = new OpenAI({
-  baseURL: "https://openrouter.ai/api/v1",
-  apiKey: import.meta.env.VITE_MODEL_AI_KEY,
-  defaultHeaders: {
-    "HTTP-Referer": "http://127.0.0.1:5173/",
-    "X-Title": "GenToastError",
-  },
-  dangerouslyAllowBrowser: true,
-});
-
 /**
  * [GetThingFromApi function that get thing based on prompt]
- * @param  {[string]} prompt [user prompt]
- * @param  {[string]} task [is that we want custom user messages || explination of the error]
- * @return {[type]}      [return can be array or string based on task]
+ * @param  {[string]} promptError [user prompt]
+ * @return {[type]}      [return object that contain two attribute {messages and explanation}]
  */
 
-async function GetThingFromApi(error: string, WhatDoYouNeed: string) {
-  const MessagePrompt =
-    "give four messages to display to user in one lines each message sperate by this ||";
-  const ExplinationPrompt = "give me an explination for this error";
-
-  let prompt: string;
-  if (WhatDoYouNeed == "messages") {
-    prompt = "based on this error:" + error + MessagePrompt;
-  } else {
-    prompt = "based on this error:" + error + ExplinationPrompt;
-  }
-  prompt += " please use a simple words in englich";
-
-  const completion = await openai.chat.completions.create({
-    model: "openai/gpt-4o",
-    messages: [
-      {
-        role: "user",
-        content: prompt,
+async function GetThingFromApi(promptError: string) {
+  const prompt: string = `
+    Based on this error: ${promptError}
+    Give me 4 messages to display to the user and a simple explanation.
+    Return your output in JSON format like this:
+    {
+      "messages": ["msg1","msg2","msg3","msg4"],
+      "explanation": "..."
+    }
+    Return only the JSON object.
+  `;
+  try {
+    const res = await fetch("https://api.cerebras.ai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${import.meta.env.VITE_CEREBRAS_API_KEY}`,
       },
-    ],
-  });
-  console.log(completion.choices[0].message.content);
+      body: JSON.stringify({
+        model: "qwen-3-235b-a22b-instruct-2507",
+        stream: false,
+        max_tokens: 20000,
+        temperature: 0.7,
+        top_p: 0.8,
+        messages: [
+          {
+            role: "system",
+            content: prompt,
+          },
+        ],
+      }),
+    });
+    const final_data = await res.json();
+    const result = JSON.parse(final_data.choices[0].message.content);
+    return result;
+  } catch (error) {
+    console.log(error);
+    return {};
+  }
 }
+
+
+export default GetThingFromApi;
