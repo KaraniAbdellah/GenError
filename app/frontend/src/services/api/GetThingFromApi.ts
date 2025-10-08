@@ -7,11 +7,12 @@
 async function GetThingFromApi(promptError: string) {
   const prompt: string = `
     Based on this error: ${promptError}
-    Give me 4 messages to display to the user and a simple explanation.
+    Give me 4 messages to display to the user and a simple explanation and titile under 20 character for this error.
     Return your output in JSON format like this:
     {
       "messages": ["msg1","msg2","msg3","msg4"],
-      "explanation": "..."
+      "explanation": "...",
+      "titile": ""
     }
     Return only the JSON object.
   `;
