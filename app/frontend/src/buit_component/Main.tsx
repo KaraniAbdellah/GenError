@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import React from "react";
 
 const Main = () => {
@@ -34,32 +35,23 @@ const Main = () => {
   const explanation = "This Error Happen Because of ....";
 
   return (
-    <div className="bg-red-100 min-h-[calc(100vh-58px)] p-6 flex flex-col gap-6">
-      <h2 className="text-2xl font-bold text-green-600">
-        What The Error That You Face Today!
-      </h2>
+    <div className=" min-h-[calc(100vh-58px)] p-6 flex flex-col justify-center">
+      <div className="">
+        <h2 className="text-2xl text-center font-semibold text-gray-800 pb-3">
+          What Error's Today?
+        </h2>
 
-      <input
-        className="border-2 border-gray-400 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
-        type="text"
-        placeholder="Type your error here..."
-      />
+        <div className="bg-gray-100 p-2 w-full rounded-full border flex justify-between gap-4 shadow-sm">
+          <textarea
+            className="px-3 w-[calc(95%-40px)] focus:none outline-0 resize-none"
+            name="text"
+            rows={5}
+          ></textarea>
 
-      <h2 className="text-gray-700 font-medium">{explanation}</h2>
-
-      <h3 className="text-xl font-semibold text-green-600">Toasts Cart Are:</h3>
-      <div className="flex flex-col gap-3">Mode Code / Mode Text</div>
-
-      <div className="flex flex-col gap-2">
-        {messages.map((userMessage, index) => (
-          <p
-            key={index}
-            className="bg-white px-4 py-2 rounded shadow text-red-600 font-medium"
-          >
-            {userMessage}
-            HERE WE MUST EXIT FOUR CART WARINIGN, ERROR, INFO, FATAL, DEBUG, TRACE
-          </p>
-        ))}
+          <button className="bg-zinc-500 rounded-full w-[40px] h-[40px] flex items-center justify-center text-white font-medium py-3 transition">
+            <ArrowUpRight />
+          </button>
+        </div>
       </div>
     </div>
   );
