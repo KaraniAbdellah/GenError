@@ -34,6 +34,7 @@ const Main = () => {
       code: "toast.info('Password must be at least 8 characters')",
     },
   ];
+  const sessionName = "Generate Session Name based on last userPrompt";
 
   const explanation = "This Error Happen Because of ....";
 
