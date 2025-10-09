@@ -1,7 +1,3 @@
-// This Componetn Wil Recive Session and Display IT
-// Display Prompt
-// Display Result of Prompt
-
 import UserType from "@/types/UserType";
 
 const DisplayResultOfMainComponent = () => {
@@ -33,40 +29,33 @@ const DisplayResultOfMainComponent = () => {
   };
 
   return (
-    // <section>
-    //   {Userdata &&
-    //     Userdata.Sessions &&
-    //     Userdata.Sessions.length &&
-    //     Userdata.Sessions.map((session, index) => {
-    //       return (
-    //         <div key={index}>
-    //           <h1>Session Name: {session.session_name}</h1>
-    //           {session.Prompts &&
-    //             session.Prompts.map((prompt) => {
-    //               return (
-    //                 <div key={index}>
-    //                   <h1>Prompt Text: {prompt.prompt_text}</h1>
-    //                   <h1>
-    //                     Messages:
-    //                     {prompt.Output &&
-    //                       prompt.Output.messages &&
-    //                       prompt.Output.messages.map((message, index) => {
-    //                         return (
-    //                           <h2>
-    //                             message {index}: {message}
-    //                           </h2>
-    //                         );
-    //                       })}
-    //                     explanation: {prompt.Output?.explanation}
-    //                   </h1>
-    //                 </div>
-    //               );
-    //             })}
-    //         </div>
-    //       );
-    //     })}
-    // </section>
-    <h1>Display Data Here</h1>
+    <section className="sm:mx-5 md:mx-7 lg:mx-20">
+      {Userdata.Sessions.map((session) => (
+        <div key={session.id} className="mb-4 border p-3 rounded-lg bg-gray-50">
+          {session.Prompts.map((prompt) => (
+            <div key={prompt.id} className="mb-2 p-2 border rounded bg-white">
+              <div className="prompt bg-red-300">
+                <p className="italic text-gray-600 text-right">
+                  Prompt: {prompt.prompt_text}
+                </p>
+              </div>
+              <div className="mt-2 output bg-green-300">
+                <p className="mt-1 text-gray-700">
+                  <span className="font-medium">Explanation:</span>{" "}
+                  {prompt.Output.explanation}
+                </p>
+                <p className="font-medium">Messages:</p>
+                <ul className="list-disc list-inside">
+                  {prompt.Output.messages.map((msg, idx) => (
+                    <li key={idx}>{msg}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      ))}
+    </section>
   );
 };
 

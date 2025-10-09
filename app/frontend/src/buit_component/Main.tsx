@@ -7,7 +7,6 @@ import DisplayResultOfMainComponent from "./DisplayResultOfMainComponent";
 const Main = () => {
   const [userPrompt, setUserPrompt] = useState<string>("");
   const handleUserPromptChange = (e: FormEvent<HTMLFormElement>) => {
-    // setUserPrompt(() => e.target.value);
     setUserPrompt(() => e.target.value);
   };
 
@@ -17,15 +16,15 @@ const Main = () => {
   };
 
   return (
-    <div className=" min-h-[calc(100vh-58px)] p-6 flex flex-col justify-center">
+    <div className="min-h-[calc(100vh-58px)] p-6 flex flex-col justify-center">
       <DisplayResultOfMainComponent></DisplayResultOfMainComponent>
-      <div className="entry">
+      <div className="entry sm:mx-5 md:mx-7 lg:mx-20">
         <h2 className="text-2xl text-center font-semibold text-gray-800 mb-10">
           What Error's Today?
         </h2>
 
         <div className="border border-zinc-300 p-2 w-full rounded-md gap-4 shadow-sm">
-          <div className="w-full mb-2">
+          <form onSubmit={DisplayInput} className="w-full mb-2">
             <AutosizeTextarea
               placeholder="Put anything ..."
               maxHeight={200}
@@ -39,7 +38,7 @@ const Main = () => {
                 userPrompt.length > 300 ? "disabled border-0" : "border-0"
               }
             />
-          </div>
+          </form>
           <div className="flex justify-between items-center">
             <button
               className="bg-sky-100 hover:bg-sky-200 cursor-pointer border border-sky-300  rounded-full w-[40px] h-[40px] text-sky-800
@@ -53,7 +52,7 @@ const Main = () => {
                 ${
                   userPrompt.length === 0
                     ? "bg-sky-100 cursor-not-allowed"
-                    : "bg-sky-200"
+                    : "bg-sky-200 cursor-pointer"
                 }`}
             >
               <ArrowUpRight />
