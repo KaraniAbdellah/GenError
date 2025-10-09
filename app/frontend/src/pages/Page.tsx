@@ -19,7 +19,7 @@ import { Link } from "react-router";
 
 export default function Page() {
   useEffect(() => {
-    // Get User Data
+    // Get User Data With Axios
     return () => {};
   }, []);
   return (

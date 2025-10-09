@@ -125,3 +125,9 @@ html {
         @apply bg-background text-foreground;
     }
 }
+
+textarea {
+    min-height: 40px !important;
+    max-height: 200px !important;
+    height: 40px !important;
+}

@@ -1,3 +1,7 @@
+// This Componetn Wil Recive Session and Display IT
+// Display Prompt
+// Display Result of Prompt
+
 import UserType from "@/types/UserType";
 
 const DisplayResultOfMainComponent = () => {
@@ -29,39 +33,40 @@ const DisplayResultOfMainComponent = () => {
   };
 
   return (
-    <section>
-      {Userdata &&
-        Userdata.Sessions &&
-        Userdata.Sessions.length &&
-        Userdata.Sessions.map((session, index) => {
-          return (
-            <div key={index}>
-              <h1>Session Name: {session.session_name}</h1>
-              {session.Prompts &&
-                session.Prompts.map((prompt) => {
-                  return (
-                    <div key={index}>
-                      <h1>Prompt Text: {prompt.prompt_text}</h1>
-                      <h1>
-                        Messages:
-                        {prompt.Output &&
-                          prompt.Output.messages &&
-                          prompt.Output.messages.map((message, index) => {
-                            return (
-                              <h2>
-                                message {index}: {message}
-                              </h2>
-                            );
-                          })}
-                        explanation: {prompt.Output?.explanation}
-                      </h1>
-                    </div>
-                  );
-                })}
-            </div>
-          );
-        })}
-    </section>
+    // <section>
+    //   {Userdata &&
+    //     Userdata.Sessions &&
+    //     Userdata.Sessions.length &&
+    //     Userdata.Sessions.map((session, index) => {
+    //       return (
+    //         <div key={index}>
+    //           <h1>Session Name: {session.session_name}</h1>
+    //           {session.Prompts &&
+    //             session.Prompts.map((prompt) => {
+    //               return (
+    //                 <div key={index}>
+    //                   <h1>Prompt Text: {prompt.prompt_text}</h1>
+    //                   <h1>
+    //                     Messages:
+    //                     {prompt.Output &&
+    //                       prompt.Output.messages &&
+    //                       prompt.Output.messages.map((message, index) => {
+    //                         return (
+    //                           <h2>
+    //                             message {index}: {message}
+    //                           </h2>
+    //                         );
+    //                       })}
+    //                     explanation: {prompt.Output?.explanation}
+    //                   </h1>
+    //                 </div>
+    //               );
+    //             })}
+    //         </div>
+    //       );
+    //     })}
+    // </section>
+    <h1>Display Data Here</h1>
   );
 };
 
