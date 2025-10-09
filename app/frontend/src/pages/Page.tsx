@@ -12,8 +12,16 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import Main from "@/buit_component/Main";
+import { useEffect } from "react";
+import { CornerDownRight } from "lucide-react";
+
+import { Link } from "react-router";
 
 export default function Page() {
+  useEffect(() => {
+    // Get User Data
+    return () => {};
+  }, []);
   return (
     <SidebarProvider>
       <SidebarLeft />
@@ -33,6 +41,14 @@ export default function Page() {
                   </BreadcrumbItem>
                 </BreadcrumbList>
               </Breadcrumb>
+              <Link to="/login">
+                <div className="flex items-center gap-2 bg-sky-100 border border-sky-300 text-sky-800 px-4 py-2 rounded-full shadow-sm hover:bg-sky-200 transition-all cursor-pointer">
+                  <p className="flex">
+                    <CornerDownRight className="mr-3" />
+                    Login to save your prompts
+                  </p>
+                </div>
+              </Link>
             </div>
           </header>
           <Main />

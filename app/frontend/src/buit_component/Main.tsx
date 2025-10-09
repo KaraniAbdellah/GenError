@@ -39,7 +39,7 @@ const Main = () => {
           </div>
           <button
             onClick={() => DisplayInput()}
-            className="bg-zinc-500 rounded-full w-[40px] h-[40px] flex items-center justify-center text-white font-medium py-3 transition"
+            className="w-[40px] h-[40px] flex items-center rounded-full cursor-pointer hover:text-zinc-800 bg-sky-100 border border-sky-300 text-sky-800 justify-center font-medium py-3 transition"
           >
             <ArrowUpRight />
           </button>
