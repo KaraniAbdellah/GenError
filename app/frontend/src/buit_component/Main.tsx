@@ -19,19 +19,13 @@ const Main = () => {
   return (
     <div className=" min-h-[calc(100vh-58px)] p-6 flex flex-col justify-center">
       <DisplayResultOfMainComponent></DisplayResultOfMainComponent>
-      <div className="">
-        <h2 className="text-2xl text-center font-semibold text-gray-800 pb-3">
+      <div className="entry">
+        <h2 className="text-2xl text-center font-semibold text-gray-800 mb-10">
           What Error's Today?
         </h2>
 
-        <div className="border border-zinc-300 p-2 w-full rounded-full flex justify-between gap-4 shadow-sm">
-          <button
-            className="bg-sky-100 cursor-pointer border border-sky-300  rounded-full w-[40px] h-[40px] text-sky-800
-          flex justify-center items-center"
-          >
-            <Plus />
-          </button>
-          <div className="w-[calc(100%-80px)]">
+        <div className="border border-zinc-300 p-2 w-full rounded-md gap-4 shadow-sm">
+          <div className="w-full mb-2">
             <AutosizeTextarea
               placeholder="Put anything ..."
               maxHeight={200}
@@ -42,24 +36,33 @@ const Main = () => {
               }
               onChange={(e) => handleUserPromptChange(e)}
               className={
-                userPrompt.length > 300
-                  ? "disabled border-0"
-                  : "border-0"
+                userPrompt.length > 300 ? "disabled border-0" : "border-0"
               }
             />
           </div>
-          <button
-            onClick={() => DisplayInput()}
-            className="w-[40px] h-[40px] flex items-center rounded-full cursor-pointer hover:text-zinc-800
-             bg-sky-100 border border-sky-300 text-sky-800 justify-center font-medium py-3 transition"
-          >
-            <ArrowUpRight />
-          </button>
+          <div className="flex justify-between items-center">
+            <button
+              className="bg-sky-100 hover:bg-sky-200 cursor-pointer border border-sky-300  rounded-full w-[40px] h-[40px] text-sky-800
+          flex justify-center items-center"
+            >
+              <Plus />
+            </button>
+            <button
+              onClick={() => DisplayInput()}
+              className={`w-[40px] h-[40px] flex items-center rounded-full justify-center font-medium py-3 transition border border-sky-300 text-sky-800 hover:text-zinc-800
+                ${
+                  userPrompt.length === 0
+                    ? "bg-sky-100 cursor-not-allowed"
+                    : "bg-sky-200"
+                }`}
+            >
+              <ArrowUpRight />
+            </button>
+          </div>
         </div>
 
-        <p className="text-xs text-right">
-          {userPrompt.length < 300 ? userPrompt.length : 300}/300 Character the
-          max is 300 charcter{" "}
+        <p className="text-xs text-right text-zinc-500 mt-2">
+          {userPrompt.length}/300 characters
         </p>
       </div>
     </div>
