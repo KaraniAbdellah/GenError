@@ -2,42 +2,10 @@ import { ArrowUpRight } from "lucide-react";
 import React, { FormEvent, useState } from "react";
 import { AutosizeTextarea } from "@/components/autosize-textarea";
 import GetThingFromApi from "@/services/api/GetThingFromApi";
+import DisplayResultOfMainComponent from "./DisplayResultOfMainComponent";
 
 const Main = () => {
   const [userPrompt, setUserPrompt] = useState<string>("");
-  const messages = [
-    "This field cannot be empty.",
-    "Please enter a valid email address.",
-    "Password must be at least 8 characters.",
-    "Password must be at least 10 characters.",
-  ];
-
-  const messagesWithCode = [
-    {
-      text: "This field cannot be empty.",
-      color: "red",
-      code: "toast.error('This field cannot be empty')",
-    },
-    {
-      text: "Please enter a valid email address.",
-      color: "green",
-      code: "toast.success('Please enter a valid email address')",
-    },
-    {
-      text: "This field cannot be empty.",
-      color: "yello",
-      code: "toast.warning('This field cannot be empty')",
-    },
-    {
-      text: "Password must be at least 8 characters.",
-      color: "blue",
-      code: "toast.info('Password must be at least 8 characters')",
-    },
-  ];
-  const sessionName = "Generate Session Name based on last userPrompt";
-
-  const explanation = "This Error Happen Because of ....";
-
   const handleUserPromptChange = (e: FormEvent<HTMLFormElement>) => {
     // setUserPrompt(() => e.target.value);
     setUserPrompt(() => e.target.value);
@@ -81,6 +49,7 @@ const Main = () => {
           max is 300 charcter{" "}
         </p>
       </div>
+      <DisplayResultOfMainComponent></DisplayResultOfMainComponent>
     </div>
   );
 };
