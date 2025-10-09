@@ -1,7 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import React, { FormEvent, useState } from "react";
-
 import { AutosizeTextarea } from "@/components/autosize-textarea";
+import GetThingFromApi from "@/services/api/GetThingFromApi";
 
 const Main = () => {
   const [userPrompt, setUserPrompt] = useState<string>("");
@@ -42,7 +42,11 @@ const Main = () => {
     // setUserPrompt(() => e.target.value);
     setUserPrompt(() => e.target.value);
   };
-  console.log(userPrompt);
+
+  const DisplayInput = async () => {
+    const result = await GetThingFromApi(userPrompt);
+    console.log(result);
+  };
 
   return (
     <div className=" min-h-[calc(100vh-58px)] p-6 flex flex-col justify-center">
@@ -65,7 +69,10 @@ const Main = () => {
               className={userPrompt.length > 300 ? `disabled` : ""}
             />
           </div>
-          <button className="bg-zinc-500 rounded-full w-[40px] h-[40px] flex items-center justify-center text-white font-medium py-3 transition">
+          <button
+            onClick={() => DisplayInput()}
+            className="bg-zinc-500 rounded-full w-[40px] h-[40px] flex items-center justify-center text-white font-medium py-3 transition"
+          >
             <ArrowUpRight />
           </button>
         </div>

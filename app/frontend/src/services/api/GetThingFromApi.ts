@@ -7,15 +7,25 @@
 async function GetThingFromApi(promptError: string) {
   const prompt: string = `
     Based on this error: ${promptError}
-    Give me 4 messages to display to the user and a simple explanation and titile under 20 character for this error.
-    Return your output in JSON format like this:
-    {
-      "messages": ["msg1","msg2","msg3","msg4"],
-      "explanation": "...",
-      "titile": ""
-    }
+      Generate 4 user-friendly messages (not technical).
+      - Each message: under 40 characters and this message should be no technical just for users
+      and Avoid phrases like“You did,” or "Fix..." “Your action caused.”
+      Some error messages are phrased in a way that accuses the user of making an error; errors are already frustrating.
+
+      - Add a simple explanation (under 160 characters) and explination should simple and very clean
+      and give the developer a good undertand for the error. 
+
+      - Add a short title (under 20 characters) and titile for the error just for developer remember the error by title.
+
+    Return the result in this JSON format:
+      {
+      "title": "",
+      "explanation": "",
+      "messages": ["msg1", "msg2", "msg3", "msg4"]
+      }
     Return only the JSON object.
   `;
+
   try {
     const res = await fetch("https://api.cerebras.ai/v1/chat/completions", {
       method: "POST",
@@ -37,6 +47,7 @@ async function GetThingFromApi(promptError: string) {
         ],
       }),
     });
+
     const final_data = await res.json();
     const result = JSON.parse(final_data.choices[0].message.content);
     return result;
@@ -45,6 +56,5 @@ async function GetThingFromApi(promptError: string) {
     return {};
   }
 }
-
 
 export default GetThingFromApi;
