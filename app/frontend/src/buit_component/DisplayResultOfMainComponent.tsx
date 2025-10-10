@@ -43,7 +43,6 @@ const DisplayResultOfMainComponent = () => {
     --> Trace
     --> Info
   */
-  
 
   return (
     <section className="sm:mx-5 md:mx-7 lg:mx-20">
@@ -77,31 +76,21 @@ const DisplayResultOfMainComponent = () => {
 
                 <div className="messages">
                   <p className="font-semibold text-sky-800 mb-2">Messages:</p>
-                  <ul className="list-none space-y-1 text-gray-700">
+                  <ul className="list-none space-y-1 text-gray-700 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3">
                     {prompt?.Output?.messages.map((msg, idx) => (
-                      <li
-                        key={idx}
-                        className="bg-sky-100 border border-sky-200 rounded-md p-2 hover:bg-sky-200 transition-all"
-                      >
-                        {msg}
-                      </li>
+                      <Tabs defaultValue="messages" key={idx} className="bg-sky-400 p-2">
+                        <TabsList>
+                          <TabsTrigger value="code">Toast Code</TabsTrigger>
+                          <TabsTrigger value="message">Message</TabsTrigger>
+                        </TabsList>
+                        <TabsContent value="code">
+                          "Make changes to your account here"
+                        </TabsContent>
+                        <TabsContent value="message">{msg}</TabsContent>
+                      </Tabs>
                     ))}
                   </ul>
                 </div>
-
-                <Tabs defaultValue="messages" className="bg-green-900 p-2">
-                  <TabsList>
-                    <TabsTrigger value="code">Toast Code</TabsTrigger>
-                    <TabsTrigger value="message">Message</TabsTrigger>
-                  </TabsList>
-                  <TabsContent value="code">
-                    Make changes to your account here.
-                  </TabsContent>
-                  <TabsContent value="message">
-                    Change your password here.
-                  </TabsContent>
-                </Tabs>
-
               </div>
             </div>
           ))}
