@@ -34,11 +34,11 @@ const DisplayResultOfMainComponent = () => {
         <div key={session.id} className="mb-4 border p-3 rounded-lg bg-gray-50">
           {session.Prompts.map((prompt) => (
             <div key={prompt.id} className="mb-2 p-2 border rounded bg-white">
-              <div className="prompt bg-red-300">
-                <p className="italic text-gray-600 text-right">
+              <div className="prompt w-[50%] m-auto mr-0 bg-red-300">
+                <p className="italic text-gray-600">
                   Prompt: {prompt.prompt_text}
                 </p>
-              </div>
+              </div> 
               <div className="mt-2 output bg-green-300">
                 <p className="mt-1 text-gray-700">
                   <span className="font-medium">Explanation:</span>{" "}
