@@ -19,14 +19,11 @@ const Main = () => {
     <div className="min-h-[calc(100vh-58px)] p-6 flex flex-col justify-center">
       <DisplayResultOfMainComponent></DisplayResultOfMainComponent>
       <div className="entry sm:mx-5 md:mx-7 lg:mx-20">
-        <h2 className="text-2xl text-center font-semibold text-gray-800 mb-10">
-          What Error's Today?
-        </h2>
 
         <div className="border border-zinc-300 p-2 w-full rounded-md gap-4 shadow-sm">
           <form onSubmit={DisplayInput} className="w-full mb-2">
             <AutosizeTextarea
-              placeholder="Put anything ..."
+              placeholder="Put anything (just errors < 3) ..."
               maxHeight={200}
               value={
                 userPrompt.length < 300
