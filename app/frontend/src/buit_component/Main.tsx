@@ -14,44 +14,27 @@ const Main = () => {
     const result = await GetThingFromApi(userPrompt);
     console.log(result);
   };
+
+  // this session as an example
   const session = {
     id: "68e3a6c2b3d81f9ae7870f36",
-    session_name: "Why THIS",
+    session_name: "React Error",
     user_id: "68e3a699b3d81f9ae7870f33",
     Prompts: [
       {
         id: "68e3a6eab3d81f9ae7870f39",
-        prompt_text:
-          "Oui, dans une étude de marché, il est conseillé d'ajouter vos objectifs, car cela montre clairement ce que vous voulez atteindre avec le projet.",
+        prompt_text: "Why my component shows a blank page?",
         session_id: "68e3a6c2b3d81f9ae7870f36",
         Output: {
           id: "68e3a775321fd5e8d6c64b4c",
           messages: [
-            "Please check the information entered",
-            "Something doesn't look right here",
-            "We need a bit more details",
-            "Let's try that again",
+            "Component can’t read prompt data.",
+            "Missing or undefined state value.",
+            "Check if props are passed correctly.",
+            "Reload and try again.",
           ],
           explanation:
-            "Do that for the entire page and your layout can get verrry weird due to domino effects, plus performance hit would be very unpredictable. You can solve it with JavaScript or manually wrap the text yourself using <br> tags. Obviously the second option won't work if you want the wrap to occur dynamically.",
-          prompt_id: "68e3a6eab3d81f9ae7870f39",
-        },
-      },
-      {
-        id: "68e3a6eab3d81f9ae7870f39",
-        prompt_text:
-          "Oui, dans une étude de marché, il est conseillé d'ajouter vos objectifs, car cela montre clairement ce que vous voulez atteindre avec le projet.",
-        session_id: "68e3a6c2b3d81f9ae7870f36",
-        Output: {
-          id: "68e3a775321fd5e8d6c64b4c",
-          messages: [
-            "Please check the information entered 18383838",
-            "Something doesn't look right here 18383838",
-            "We need a bit more details 18383838",
-            "Let's try that again 18383838",
-          ],
-          explanation:
-            "Do that for the entire page and your layout can get verrry weird due to domino effects, plus performance hit would be very unpredictable. You can solve it with JavaScript or manually wrap the text yourself using <br> tags. Obviously the second option won't work if you want the wrap to occur dynamically.",
+            "The component may try to access data before it exists. Use conditional rendering or check if data is loaded before displaying.",
           prompt_id: "68e3a6eab3d81f9ae7870f39",
         },
       },
@@ -109,8 +92,13 @@ const Main = () => {
   );
 };
 
-// log levels: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
-// example; https://www.getvoila.ai/ai-tools/error-message-generator
-// Inspeation for Cop/Past button: https://ui.shadcn.com/docs/changelog#button-group
-
 export default Main;
+
+
+// Set User Context and work with realy data
+// And Next Task is Rendring Session in Left Side
+// And Also When i Click to Session I Should be figure out Display Componet
+// and Also If I Click to Button for get errors i should be see if i am in session if it is good else i should create session and translate user to session
+
+
+
