@@ -76,7 +76,7 @@ const DisplayResultOfMainComponent = () => {
     message: "Welcome Again",
   };
 
-  const CopyToClibord = (content: string) => {
+  const CopyToClipboard = (content: string) => {
     navigator.clipboard.writeText(content);
   };
 
@@ -204,9 +204,9 @@ const DisplayResultOfMainComponent = () => {
                               >
                                 <p className="flex justify-end items-center mb-2">
                                   <button
-                                  className="cursor-pointer"
+                                    className="cursor-pointer hover:text-green-500"
                                     onClick={() =>
-                                      CopyToClibord(ErrorMessage.message)
+                                      CopyToClipboard(ErrorMessage.message)
                                     }
                                   >
                                     <Copy size={18} />
@@ -220,8 +220,9 @@ const DisplayResultOfMainComponent = () => {
                               >
                                 <p className="flex justify-end items-center mb-2">
                                   <button
+                                    className="cursor-pointer hover:text-gray-200"
                                     onClick={() =>
-                                      CopyToClibord(ErrorMessage.code)
+                                      CopyToClipboard(ErrorMessage.code)
                                     }
                                   >
                                     <Copy size={18} />
