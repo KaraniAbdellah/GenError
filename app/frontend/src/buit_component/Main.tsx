@@ -14,10 +14,55 @@ const Main = () => {
     const result = await GetThingFromApi(userPrompt);
     console.log(result);
   };
+  const session = {
+    id: "68e3a6c2b3d81f9ae7870f36",
+    session_name: "Why THIS",
+    user_id: "68e3a699b3d81f9ae7870f33",
+    Prompts: [
+      {
+        id: "68e3a6eab3d81f9ae7870f39",
+        prompt_text:
+          "Oui, dans une étude de marché, il est conseillé d'ajouter vos objectifs, car cela montre clairement ce que vous voulez atteindre avec le projet.",
+        session_id: "68e3a6c2b3d81f9ae7870f36",
+        Output: {
+          id: "68e3a775321fd5e8d6c64b4c",
+          messages: [
+            "Please check the information entered",
+            "Something doesn't look right here",
+            "We need a bit more details",
+            "Let's try that again",
+          ],
+          explanation:
+            "Do that for the entire page and your layout can get verrry weird due to domino effects, plus performance hit would be very unpredictable. You can solve it with JavaScript or manually wrap the text yourself using <br> tags. Obviously the second option won't work if you want the wrap to occur dynamically.",
+          prompt_id: "68e3a6eab3d81f9ae7870f39",
+        },
+      },
+      {
+        id: "68e3a6eab3d81f9ae7870f39",
+        prompt_text:
+          "Oui, dans une étude de marché, il est conseillé d'ajouter vos objectifs, car cela montre clairement ce que vous voulez atteindre avec le projet.",
+        session_id: "68e3a6c2b3d81f9ae7870f36",
+        Output: {
+          id: "68e3a775321fd5e8d6c64b4c",
+          messages: [
+            "Please check the information entered 18383838",
+            "Something doesn't look right here 18383838",
+            "We need a bit more details 18383838",
+            "Let's try that again 18383838",
+          ],
+          explanation:
+            "Do that for the entire page and your layout can get verrry weird due to domino effects, plus performance hit would be very unpredictable. You can solve it with JavaScript or manually wrap the text yourself using <br> tags. Obviously the second option won't work if you want the wrap to occur dynamically.",
+          prompt_id: "68e3a6eab3d81f9ae7870f39",
+        },
+      },
+    ],
+  };
 
   return (
     <div className="min-h-[calc(100vh-58px)] p-6 flex flex-col justify-center">
-      <DisplayResultOfMainComponent></DisplayResultOfMainComponent>
+      <DisplayResultOfMainComponent
+        session={session}
+      ></DisplayResultOfMainComponent>
       <div className="entry sm:mx-2 md:mx-5 lg:mx-8">
         <div className="border border-zinc-300 p-2 w-full rounded-md gap-4 shadow-sm">
           <form onSubmit={DisplayInput} className="w-full mb-2">
