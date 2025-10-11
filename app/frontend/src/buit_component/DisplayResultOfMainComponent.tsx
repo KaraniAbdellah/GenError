@@ -1,6 +1,12 @@
 import UserType from "@/types/UserType";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { AlertCircle, Info, AlertTriangle, XCircle } from "lucide-react";
+import {
+  AlertCircle,
+  Info,
+  AlertTriangle,
+  XCircle,
+  Terminal,
+} from "lucide-react";
 import RenderMessageCardByFlag from "@/services/utils/RenderMessageCardByFlag";
 import CustomMessageType from "@/types/CustomMessageType";
 import { useEffect, useState } from "react";
@@ -15,6 +21,31 @@ const DisplayResultOfMainComponent = () => {
     name: "abdellah",
     email: "abdellahkarani@gmail.com",
     Sessions: [
+      {
+        id: "68e3a6c2b3d81f9ae7870f36",
+        session_name: "Why THIS",
+        user_id: "68e3a699b3d81f9ae7870f33",
+        Prompts: [
+          {
+            id: "68e3a6eab3d81f9ae7870f39",
+            prompt_text:
+              "Oui, dans une étude de marché, il est conseillé d'ajouter vos objectifs, car cela montre clairement ce que vous voulez atteindre avec le projet.",
+            session_id: "68e3a6c2b3d81f9ae7870f36",
+            Output: {
+              id: "68e3a775321fd5e8d6c64b4c",
+              messages: [
+                "Please check the information entered",
+                "Something doesn't look right here",
+                "We need a bit more details",
+                "Let's try that again",
+              ],
+              explanation:
+                "Do that for the entire page and your layout can get verrry weird due to domino effects, plus performance hit would be very unpredictable. You can solve it with JavaScript or manually wrap the text yourself using <br> tags. Obviously the second option won't work if you want the wrap to occur dynamically.",
+              prompt_id: "68e3a6eab3d81f9ae7870f39",
+            },
+          },
+        ],
+      },
       {
         id: "68e3a6c2b3d81f9ae7870f36",
         session_name: "Why THIS",
@@ -73,31 +104,33 @@ const DisplayResultOfMainComponent = () => {
       {Userdata.Sessions.map((session) => (
         <div
           key={session.id}
-          className="mb-6 border border-gray-200 p-1 rounded-xl bg-gradient-to-br from-gray-50 to-white"
+          className="mb-6  p-1 rounded-xl bg-gradient-to-br"
         >
           {session.Prompts.map((prompt) => (
             <div
               key={prompt.id}
-              className="mb-4 p-4 border border-gray-100 rounded-xl bg-white"
+              className="mb-4 p-4 rounded-xl
+              border from-gray-50 to-white border-gray-200"
             >
               <div className="prompt flex justify-end mb-4">
                 <div className="max-w-[70%] text-left bg-gradient-to-r from-sky-50 to-blue-50 p-4 rounded-xl border border-sky-200">
-                  <p className="text-xs font-semibold text-sky-600 uppercase tracking-wide mb-1">
-                    Your Prompt
+                  <p className="text-xs flex justify-start items-center font-semibold text-sky-600 uppercase tracking-wide mb-1">
+                    <Terminal />
+                    <p className="ml-2">Prompt</p>
                   </p>
-                  <p className="text-gray-800 leading-relaxed">
+                  <p className="text-gray-800 leading-relaxed text-sm">
                     {prompt.prompt_text}
                   </p>
                 </div>
               </div>
 
-              <div className="output bg-gradient-to-br from-slate-50 to-gray-50 p-5 border border-gray-200 rounded-xl">
-                <div className="explanation mb-6 p-4 bg-white rounded-lg border border-gray-200">
+              <div className="output bg-gradient-to-br border-gray-200 rounded-xl">
+                <div className="explanation mb-6 p-2 bg-white rounded-lg border border-gray-200">
                   <div className="flex items-start gap-2">
-                    <Info className="w-5 h-5 text-sky-600 mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="text-xs font-semibold text-sky-700 uppercase tracking-wide mb-2">
-                        Explanation
+                      <p className="text-xs flex justify-start items-center font-semibold text-sky-700 uppercase tracking-wide mb-2">
+                        <Info />
+                        <p className="ml-2">Explanation</p>
                       </p>
                       <p className="text-gray-700 leading-relaxed text-sm">
                         {prompt?.Output?.explanation ||
@@ -111,7 +144,7 @@ const DisplayResultOfMainComponent = () => {
                   <p className="text-sm font-bold text-gray-800 mb-4 uppercase tracking-wide">
                     Validation Messages
                   </p>
-                  <div className="grid lg:grid-cols-2 xl:grid-cols-3 grid-cols-1 gap-4">
+                  <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
                     {customErrorMessages.length > 0 &&
                       customErrorMessages.map((ErrorMessage, idx) => (
                         <div
