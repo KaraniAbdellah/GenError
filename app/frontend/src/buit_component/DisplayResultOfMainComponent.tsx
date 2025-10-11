@@ -6,6 +6,7 @@ import {
   AlertTriangle,
   XCircle,
   Terminal,
+  Copy,
 } from "lucide-react";
 import RenderMessageCardByFlag from "@/services/utils/RenderMessageCardByFlag";
 import CustomMessageType from "@/types/CustomMessageType";
@@ -73,6 +74,10 @@ const DisplayResultOfMainComponent = () => {
       },
     ],
     message: "Welcome Again",
+  };
+
+  const CopyToClibord = (content: string) => {
+    navigator.clipboard.writeText(content);
   };
 
   const getIconByFlag = (flagName: string) => {
@@ -193,19 +198,36 @@ const DisplayResultOfMainComponent = () => {
                                   Code
                                 </TabsTrigger>
                               </TabsList>
-
                               <TabsContent
                                 value="message"
                                 className="mt-0 p-3 bg-gray-50 rounded-lg border border-gray-200 min-h-[80px] text-sm text-gray-700"
                               >
-                                {ErrorMessage.message}
+                                <p className="flex justify-end items-center mb-2">
+                                  <button
+                                  className="cursor-pointer"
+                                    onClick={() =>
+                                      CopyToClibord(ErrorMessage.message)
+                                    }
+                                  >
+                                    <Copy size={18} />
+                                  </button>
+                                </p>
+                                <p>{ErrorMessage.message}</p>
                               </TabsContent>
-
                               <TabsContent
                                 value="code"
                                 className="mt-0 p-3 bg-gray-900 rounded-lg border border-gray-700 min-h-[80px] text-xs font-mono text-green-400 overflow-x-auto"
                               >
-                                {ErrorMessage.code}
+                                <p className="flex justify-end items-center mb-2">
+                                  <button
+                                    onClick={() =>
+                                      CopyToClibord(ErrorMessage.code)
+                                    }
+                                  >
+                                    <Copy size={18} />
+                                  </button>
+                                </p>
+                                <p>{ErrorMessage.code}</p>
                               </TabsContent>
                             </Tabs>
                           </div>
