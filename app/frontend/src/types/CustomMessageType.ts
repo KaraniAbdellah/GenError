@@ -1,8 +1,8 @@
 interface CustomMessageType {
   message: string;
-  flag: string;
   code: string;
   color: string;
+  flagName: string;
 }
 
 export default CustomMessageType;

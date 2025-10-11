@@ -5,41 +5,23 @@
 import CustomMessageType from "@/types/CustomMessageType";
 
 function RenderMessageCardByFlag(messages: string[]) {
-  const custom_messages: Array<Array<CustomMessageType>> = [];
-  messages.map((message) => {
-    const subCustomMessage: {
-      message: string;
-      flag: string;
-      code: string;
-      color: string;
-    }[] = [
-      {
-        message: message,
-        flag: "Error",
-        code: `toast.error("${message}");`,
-        color: "#EF4444",
-      },
-      {
-        message: message,
-        flag: "Warning",
-        code: `toast.warning("${message}");`,
-        color: "#F59E0B",
-      },
-      {
-        message: message,
-        flag: "Success",
-        code: `toast.success("${message}");`,
-        color: "#10B981",
-      },
-      {
-        message: message,
-        flag: "Info",
-        code: `toast.info("${message}");`,
-        color: "#3B82F6",
-      },
-    ];
-    custom_messages.push(subCustomMessage);
+  const custom_messages: Array<CustomMessageType> = [];
+  const flagsWithColors = [
+    { flagName: "error", color: "#EF4444" },
+    { flagName: "warning", color: "#F59E0B" },
+    { flagName: "info", color: "#3B82F6" },
+    { flagName: "success", color: "#10B981" },
+  ];
+
+  messages.forEach((message, index) => {
+    custom_messages.push({
+      message: message,
+      code: `toast.${flagsWithColors[index].flagName}("${message}");`,
+      color: flagsWithColors[index].color,
+      flagName: flagsWithColors[index].flagName
+    });
   });
+
   return custom_messages;
 }
 

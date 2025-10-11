@@ -1,13 +1,14 @@
 import UserType from "@/types/UserType";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CornerDownRight } from "lucide-react";
-// import RenderMessageCardByFlag from "@/services/utils/RenderMessageCardByFlag";
-// import CustomMessageType from "@/types/CustomMessageType";
+import { AlertCircle, Info, AlertTriangle, XCircle } from "lucide-react";
+import RenderMessageCardByFlag from "@/services/utils/RenderMessageCardByFlag";
+import CustomMessageType from "@/types/CustomMessageType";
+import { useEffect, useState } from "react";
 
 const DisplayResultOfMainComponent = () => {
-  // const [customErrorMessages, setCusomtErrorMessages] = useState<
-  //   Array<Array<CustomMessageType>>
-  // >([]);
+  const [customErrorMessages, setCusomtErrorMessages] = useState<
+    Array<CustomMessageType>
+  >([]);
 
   const Userdata: UserType = {
     id: "68e3a699b3d81f9ae7870f33",
@@ -42,70 +43,142 @@ const DisplayResultOfMainComponent = () => {
     ],
     message: "Welcome Again",
   };
-  // useEffect(() => {
-  //   const customErrorMessages = RenderMessageCardByFlag([
-  //     "Please check the information entered",
-  //     "Something doesn't look right here",
-  //     "We need a bit more details",
-  //     "Let's try that again",
-  //   ]);
-  //   console.log(customErrorMessages);
-  //   setCusomtErrorMessages(() => customErrorMessages);
-  //   return () => {};
-  // }, []);
+
+  const getIconByFlag = (flagName: string) => {
+    const name = flagName.toLowerCase();
+    if (name.includes("error") || name.includes("danger")) {
+      return <XCircle className="w-5 h-5" />;
+    } else if (name.includes("warning")) {
+      return <AlertTriangle className="w-5 h-5" />;
+    } else if (name.includes("info")) {
+      return <Info className="w-5 h-5" />;
+    }
+    return <AlertCircle className="w-5 h-5" />;
+  };
+
+  useEffect(() => {
+    const customErrorMessages = RenderMessageCardByFlag([
+      "Please check the information entered",
+      "Something doesn't look right here",
+      "We need a bit more details",
+      "Let's try that again",
+    ]);
+    console.log(customErrorMessages);
+    setCusomtErrorMessages(() => customErrorMessages);
+    return () => {};
+  }, []);
 
   return (
-    <section className="sm:mx-5 md:mx-7 lg:mx-20">
+    <section className="sm:mx-2 md:mx-5 lg:mx-8">
       {Userdata.Sessions.map((session) => (
         <div
           key={session.id}
-          className="mb-6 border p-3 rounded-lg bg-gray-50 shadow-sm"
+          className="mb-6 border border-gray-200 p-1 rounded-xl bg-gradient-to-br from-gray-50 to-white"
         >
           {session.Prompts.map((prompt) => (
             <div
               key={prompt.id}
-              className="mb-4 p-3 border rounded bg-white shadow"
+              className="mb-4 p-4 border border-gray-100 rounded-xl bg-white"
             >
-              <div className="prompt flex justify-end">
-                <p className="italic text-gray-700 max-w-[60%] text-left bg-sky-100 p-3 rounded-md border border-sky-200">
-                  <span className="font-semibold text-sky-800">Prompt:</span>{" "}
-                  {prompt.prompt_text}
-                </p>
+              <div className="prompt flex justify-end mb-4">
+                <div className="max-w-[70%] text-left bg-gradient-to-r from-sky-50 to-blue-50 p-4 rounded-xl border border-sky-200">
+                  <p className="text-xs font-semibold text-sky-600 uppercase tracking-wide mb-1">
+                    Your Prompt
+                  </p>
+                  <p className="text-gray-800 leading-relaxed">
+                    {prompt.prompt_text}
+                  </p>
+                </div>
               </div>
 
-              <div className="output mt-3 bg-sky-50 p-3 border border-sky-200 rounded-md">
-                <div className="explanation mb-2">
-                  <p className="text-gray-700 leading-relaxed">
-                    <span className="font-semibold text-sky-800">
-                      Explanation:
-                    </span>{" "}
-                    {prompt?.Output?.explanation ||
-                      "This is a detailed explanation of the model's response based on the given prompt."}
-                  </p>
+              <div className="output bg-gradient-to-br from-slate-50 to-gray-50 p-5 border border-gray-200 rounded-xl">
+                <div className="explanation mb-6 p-4 bg-white rounded-lg border border-gray-200">
+                  <div className="flex items-start gap-2">
+                    <Info className="w-5 h-5 text-sky-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-xs font-semibold text-sky-700 uppercase tracking-wide mb-2">
+                        Explanation
+                      </p>
+                      <p className="text-gray-700 leading-relaxed text-sm">
+                        {prompt?.Output?.explanation ||
+                          "This is a detailed explanation of the model's response based on the given prompt."}
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="messages">
-                  <p className="font-semibold text-sky-800 mb-2">Messages:</p>
-                  <ul className="list-none space-y-1 text-gray-700 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3">
-                    {prompt?.Output?.messages.map((msg, idx) => (
-                      <div>
-                        <Tabs
-                          defaultValue="message"
+                  <p className="text-sm font-bold text-gray-800 mb-4 uppercase tracking-wide">
+                    Validation Messages
+                  </p>
+                  <div className="grid lg:grid-cols-2 xl:grid-cols-3 grid-cols-1 gap-4">
+                    {customErrorMessages.length > 0 &&
+                      customErrorMessages.map((ErrorMessage, idx) => (
+                        <div
                           key={idx}
-                          className="bg-sky-400 p-2"
+                          className="group relative overflow-hidden rounded-xl border-2 bg-white hover transition-all duration-300 transform hover:-translate-y-1"
+                          style={{
+                            borderColor: ErrorMessage.color,
+                          }}
                         >
-                          <TabsList>
-                            <TabsTrigger value="message">Message</TabsTrigger>
-                            <TabsTrigger value="code">Toast Code</TabsTrigger>
-                          </TabsList>
-                          <TabsContent value="code">
-                            "Make changes to your account here"
-                          </TabsContent>
-                          <TabsContent value="message">{msg}</TabsContent>
-                        </Tabs>
-                      </div>
-                    ))}
-                  </ul>
+                          <div
+                            className="absolute top-0 left-0 right-0 h-1.5"
+                            style={{ backgroundColor: ErrorMessage.color }}
+                          />
+
+                          <div className="p-4 pt-5">
+                            <div className="flex items-center gap-2 mb-3">
+                              <div
+                                className="p-1.5 rounded-lg"
+                                style={{
+                                  backgroundColor: `${ErrorMessage.color}20`,
+                                  color: ErrorMessage.color,
+                                }}
+                              >
+                                {getIconByFlag(ErrorMessage.flagName)}
+                              </div>
+                              <p
+                                className="font-semibold text-sm uppercase tracking-wide"
+                                style={{ color: ErrorMessage.color }}
+                              >
+                                {ErrorMessage.flagName}
+                              </p>
+                            </div>
+
+                            <Tabs defaultValue="message" className="w-full">
+                              <TabsList className="w-full grid grid-cols-2 mb-3 bg-gray-100">
+                                <TabsTrigger
+                                  value="message"
+                                  className="text-xs data-[state=active]:bg-white"
+                                >
+                                  Message
+                                </TabsTrigger>
+                                <TabsTrigger
+                                  value="code"
+                                  className="text-xs data-[state=active]:bg-white"
+                                >
+                                  Code
+                                </TabsTrigger>
+                              </TabsList>
+
+                              <TabsContent
+                                value="message"
+                                className="mt-0 p-3 bg-gray-50 rounded-lg border border-gray-200 min-h-[80px] text-sm text-gray-700"
+                              >
+                                {ErrorMessage.message}
+                              </TabsContent>
+
+                              <TabsContent
+                                value="code"
+                                className="mt-0 p-3 bg-gray-900 rounded-lg border border-gray-700 min-h-[80px] text-xs font-mono text-green-400 overflow-x-auto"
+                              >
+                                {ErrorMessage.code}
+                              </TabsContent>
+                            </Tabs>
+                          </div>
+                        </div>
+                      ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -117,26 +190,3 @@ const DisplayResultOfMainComponent = () => {
 };
 
 export default DisplayResultOfMainComponent;
-
-// {customErrorMessages.length > 0 &&
-//   customErrorMessages.map((group, idx) => (
-//     <div key={idx} className="space-y-3">
-//       {group.map((status, index) => (
-//         <div
-//           key={index}
-//           className="flex items-center gap-3 p-3 rounded-xl shadow-md border"
-//           style={{ borderColor: status.color }}
-//         >
-//           <span
-//             className="px-3 py-1 rounded-lg text-white font-semibold text-sm"
-//             style={{ backgroundColor: status.color }}
-//           >
-//             {status.flag}
-//           </span>
-//           <p className="text-gray-800 dark:text-gray-100 text-sm">
-//             {status.message}
-//           </p>
-//         </div>
-//       ))}
-//     </div>
-//   ))}
