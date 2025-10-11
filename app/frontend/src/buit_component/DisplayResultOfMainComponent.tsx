@@ -1,7 +1,14 @@
 import UserType from "@/types/UserType";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CornerDownRight } from "lucide-react";
+// import RenderMessageCardByFlag from "@/services/utils/RenderMessageCardByFlag";
+// import CustomMessageType from "@/types/CustomMessageType";
 
 const DisplayResultOfMainComponent = () => {
+  // const [customErrorMessages, setCusomtErrorMessages] = useState<
+  //   Array<Array<CustomMessageType>>
+  // >([]);
+
   const Userdata: UserType = {
     id: "68e3a699b3d81f9ae7870f33",
     name: "abdellah",
@@ -35,14 +42,17 @@ const DisplayResultOfMainComponent = () => {
     ],
     message: "Welcome Again",
   };
-
-  // We Gonna Presente Each Message in Three Flag
-  /*
-    --> Error
-    --> Warn
-    --> Trace
-    --> Info
-  */
+  // useEffect(() => {
+  //   const customErrorMessages = RenderMessageCardByFlag([
+  //     "Please check the information entered",
+  //     "Something doesn't look right here",
+  //     "We need a bit more details",
+  //     "Let's try that again",
+  //   ]);
+  //   console.log(customErrorMessages);
+  //   setCusomtErrorMessages(() => customErrorMessages);
+  //   return () => {};
+  // }, []);
 
   return (
     <section className="sm:mx-5 md:mx-7 lg:mx-20">
@@ -78,16 +88,22 @@ const DisplayResultOfMainComponent = () => {
                   <p className="font-semibold text-sky-800 mb-2">Messages:</p>
                   <ul className="list-none space-y-1 text-gray-700 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3">
                     {prompt?.Output?.messages.map((msg, idx) => (
-                      <Tabs defaultValue="messages" key={idx} className="bg-sky-400 p-2">
-                        <TabsList>
-                          <TabsTrigger value="code">Toast Code</TabsTrigger>
-                          <TabsTrigger value="message">Message</TabsTrigger>
-                        </TabsList>
-                        <TabsContent value="code">
-                          "Make changes to your account here"
-                        </TabsContent>
-                        <TabsContent value="message">{msg}</TabsContent>
-                      </Tabs>
+                      <div>
+                        <Tabs
+                          defaultValue="message"
+                          key={idx}
+                          className="bg-sky-400 p-2"
+                        >
+                          <TabsList>
+                            <TabsTrigger value="message">Message</TabsTrigger>
+                            <TabsTrigger value="code">Toast Code</TabsTrigger>
+                          </TabsList>
+                          <TabsContent value="code">
+                            "Make changes to your account here"
+                          </TabsContent>
+                          <TabsContent value="message">{msg}</TabsContent>
+                        </Tabs>
+                      </div>
                     ))}
                   </ul>
                 </div>
@@ -101,3 +117,26 @@ const DisplayResultOfMainComponent = () => {
 };
 
 export default DisplayResultOfMainComponent;
+
+// {customErrorMessages.length > 0 &&
+//   customErrorMessages.map((group, idx) => (
+//     <div key={idx} className="space-y-3">
+//       {group.map((status, index) => (
+//         <div
+//           key={index}
+//           className="flex items-center gap-3 p-3 rounded-xl shadow-md border"
+//           style={{ borderColor: status.color }}
+//         >
+//           <span
+//             className="px-3 py-1 rounded-lg text-white font-semibold text-sm"
+//             style={{ backgroundColor: status.color }}
+//           >
+//             {status.flag}
+//           </span>
+//           <p className="text-gray-800 dark:text-gray-100 text-sm">
+//             {status.message}
+//           </p>
+//         </div>
+//       ))}
+//     </div>
+//   ))}
