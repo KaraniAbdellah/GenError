@@ -56,9 +56,10 @@ export const addUser: RequestHandler = async (req: Request, res: Response) => {
 export const getUser: RequestHandler = async (req: Request, res: Response) => {
   try {
     const AuthUser: userCreateType | undefined = req.user;
+    console.log("Hello User");
 
     if (!AuthUser) {
-      return res.status(404).send({message: "User Not Found"});
+      return res.status(404).send({ message: "User Not Found" });
     }
 
     const user: userType | null = await userClient.findUnique({
@@ -81,9 +82,7 @@ export const getUser: RequestHandler = async (req: Request, res: Response) => {
       return res.status(404).send({ message: "we can not find user" });
     }
 
-    return res
-      .status(200)
-      .send({ ...user, message: "Welcome Again" });
+    return res.status(200).send({ ...user, message: "Welcome Again" });
   } catch (error) {
     if (error instanceof Error) {
       return res.status(500).send({ message: error.message });

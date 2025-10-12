@@ -10,8 +10,6 @@ import PrivateRoutes from "./routes/PrivateRoutes";
 
 
 function App() {
-  // Get Data and Fill The Context
-  /// ...
   return (
     <div className="h-screen bg-zinc-800 w-full">
       <BrowserRouter>

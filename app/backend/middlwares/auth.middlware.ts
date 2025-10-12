@@ -9,6 +9,7 @@ export const authMiddlware: RequestHandler = (
   res: Response,
   next: NextFunction
 ) => {
+  console.log("Hello from auth middlware");
   try {
     const token: string | undefined = req.headers.authorization?.split(" ")[1];
     if (!token) {

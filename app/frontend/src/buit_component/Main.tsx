@@ -4,6 +4,7 @@ import { AutosizeTextarea } from "@/components/autosize-textarea";
 import GetThingFromApi from "@/services/api/GetThingFromApi";
 import DisplayResultOfMainComponent from "./DisplayResultOfMainComponent";
 
+
 const Main = () => {
   const [userPrompt, setUserPrompt] = useState<string>("");
   const handleUserPromptChange = (e: FormEvent<HTMLFormElement>) => {
@@ -46,6 +47,7 @@ const Main = () => {
       <DisplayResultOfMainComponent
         session={session}
       ></DisplayResultOfMainComponent>
+
       <div className="entry sm:mx-2 md:mx-5 lg:mx-8">
         <div className="border border-zinc-300 p-2 w-full rounded-md gap-4 shadow-sm">
           <form onSubmit={DisplayInput} className="w-full mb-2">

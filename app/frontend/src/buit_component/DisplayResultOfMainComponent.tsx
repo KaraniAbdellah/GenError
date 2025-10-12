@@ -37,10 +37,12 @@ const DisplayResultOfMainComponent = ({ session }) => {
           >
             <div className="prompt flex justify-end mb-4">
               <div className="max-w-[70%] text-left bg-gradient-to-r from-sky-50 to-blue-50 p-4 rounded-xl border border-sky-200">
-                <p className="text-xs flex justify-start items-center font-semibold text-sky-600 uppercase tracking-wide mb-1">
-                  <Terminal />
+                <div className="text-xs flex justify-start items-center font-semibold text-sky-600 uppercase tracking-wide mb-1">
+                  <span>
+                    <Terminal />
+                  </span>
                   <p className="ml-2">Prompt</p>
-                </p>
+                </div>
                 <p className="text-gray-800 leading-relaxed text-sm">
                   {prompt.prompt_text}
                 </p>
@@ -51,10 +53,12 @@ const DisplayResultOfMainComponent = ({ session }) => {
               <div className="explanation mb-6 p-2 bg-white rounded-lg border border-gray-200">
                 <div className="flex items-start gap-2">
                   <div>
-                    <p className="text-xs flex justify-start items-center font-semibold text-sky-700 uppercase tracking-wide mb-2">
-                      <Info />
+                    <div className="text-xs flex justify-start items-center font-semibold text-sky-700 uppercase tracking-wide mb-2">
+                      <span>
+                        <Info />
+                      </span>
                       <p className="ml-2">Explanation</p>
-                    </p>
+                    </div>
                     <p className="text-gray-700 leading-relaxed text-sm">
                       {prompt?.Output?.explanation ||
                         "This is a detailed explanation of the model's response based on the given prompt."}
