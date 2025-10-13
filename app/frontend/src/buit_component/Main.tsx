@@ -5,7 +5,7 @@ import GetThingFromApi from "@/services/api/GetThingFromApi";
 import DisplayResultOfMainComponent from "./DisplayResultOfMainComponent";
 import { useContext } from "react";
 import userContext from "@/context/UserContext";
-import UserType from "@/types/UserTypes";
+import { UserType } from "@/types/UserTypes";
 
 const Main = () => {
   const [userPrompt, setUserPrompt] = useState<string>("");
@@ -44,9 +44,9 @@ const Main = () => {
   };
 
   const userData: UserType | null = useContext(userContext);
+  console.log(userData);
 
   useEffect(() => {
-    console.log(userData);
     return () => {};
   }, []);
 

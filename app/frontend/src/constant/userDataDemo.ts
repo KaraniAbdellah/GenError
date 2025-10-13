@@ -1,4 +1,4 @@
-import UserType from "@/types/UserTypes";
+import { UserType } from "@/types/UserTypes";
 
 const userDataDemo: UserType = {
   id: "68e3a699b3d81f9ae7870f33",
@@ -7,7 +7,7 @@ const userDataDemo: UserType = {
   Sessions: [
     {
       id: "68e3a6b7b3d81f9ae7870f35",
-      session_name: "Why THIS",
+      session_name: "Session 1",
       user_id: "68e3a699b3d81f9ae7870f33",
       Prompts: [
         {
@@ -25,7 +25,7 @@ const userDataDemo: UserType = {
     },
     {
       id: "68e3a6c2b3d81f9ae7870f36",
-      session_name: "Why THIS",
+      session_name: "Session 2",
       user_id: "68e3a699b3d81f9ae7870f33",
       Prompts: [
         {

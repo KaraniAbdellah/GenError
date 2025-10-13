@@ -19,7 +19,8 @@ import {
 } from "@/components/ui/sidebar";
 import { useContext } from "react";
 import userContext from "@/context/UserContext";
-import UserType from "@/types/UserTypes";
+import { UserType } from "@/types/UserTypes";
+import getUserSessionsName from "@/services/user/getUserSessionsName";
 
 // This is sample data.
 const data = {
@@ -121,6 +122,8 @@ export function SidebarLeft({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
   const userData: UserType | null = useContext(userContext);
+  const sessions_name: string[] = getUserSessionsName(userData);
+  console.log(sessions_name);
   return (
     <Sidebar className="border-r-0" {...props}>
       <SidebarHeader>
