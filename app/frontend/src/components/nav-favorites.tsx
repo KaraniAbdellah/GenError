@@ -1,11 +1,6 @@
-"use client"
+"use client";
 
-import {
-  ArrowUpRight,
-  Link,
-  MoreHorizontal,
-  Trash2,
-} from "lucide-react"
+import { ArrowUpRight, Link, MoreHorizontal, Trash2 } from "lucide-react";
 
 import {
   DropdownMenu,
@@ -13,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -22,19 +17,22 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 export function NavFavorites({
   favorites,
 }: {
   favorites: {
-    name: string
-    url: string
-    emoji: string
-  }[]
+    name: string;
+    id: string;
+  }[];
 }) {
-  const { isMobile } = useSidebar()
-
+  const { isMobile } = useSidebar();
+  const getSessionId = (e, id) => {
+    console.log(e.target);
+    console.log(id);
+    // Update The Context To Display It to Display Main Component
+  };
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
       <SidebarGroupLabel>Prompts</SidebarGroupLabel>
@@ -42,10 +40,12 @@ export function NavFavorites({
         {favorites.map((item) => (
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
-              <a href={item.url} title={item.name}>
-                <span>{item.emoji}</span>
+              <button
+                onClick={(e) => getSessionId(e, item.id)}
+                title={item.name}
+              >
                 <span>{item.name}</span>
-              </a>
+              </button>
             </SidebarMenuButton>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -84,5 +84,5 @@ export function NavFavorites({
         </SidebarMenuItem>
       </SidebarMenu>
     </SidebarGroup>
-  )
+  );
 }
