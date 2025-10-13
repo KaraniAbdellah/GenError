@@ -16,16 +16,18 @@ import { useEffect, useState } from "react";
 import { CornerDownRight } from "lucide-react";
 import { Link } from "react-router";
 import GetUserInformation from "@/services/user/GetUserInformation";
-import UserType from "@/types/UserType";
+import { UserType } from "@/types/UserTypes";
 import UserContext from "@/context/UserContext";
 import userDataDemo from "@/constant/userDataDemo";
 
 export default function Page() {
-  const [userData, setUserData] = useState<UserType>(userDataDemo);
+  const [userData, setUserData] = useState<UserType | null>(null);
   async function main() {
     const reponseData: UserType | null = await GetUserInformation();
     if (reponseData) {
       setUserData(() => reponseData);
+    } else {
+      setUserData(() => userDataDemo);
     }
   }
   useEffect(() => {

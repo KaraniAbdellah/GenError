@@ -5,7 +5,7 @@ import GetThingFromApi from "@/services/api/GetThingFromApi";
 import DisplayResultOfMainComponent from "./DisplayResultOfMainComponent";
 import { useContext } from "react";
 import userContext from "@/context/UserContext";
-import UserType from "@/types/UserType";
+import UserType from "@/types/UserTypes";
 
 const Main = () => {
   const [userPrompt, setUserPrompt] = useState<string>("");
@@ -43,7 +43,7 @@ const Main = () => {
     ],
   };
 
-  const userData: UserType = useContext(userContext);
+  const userData: UserType | null = useContext(userContext);
 
   useEffect(() => {
     console.log(userData);
@@ -104,7 +104,7 @@ const Main = () => {
 
 export default Main;
 
-// Set User Context and work with realy data
+// At Begining Work With Real Data
 // And Next Task is Rendring Session in Left Side
 // And Also When i Click to Session I Should be figure out Display Componet
 // and Also If I Click to Button for get errors i should be see if i am in session if it is good else i should create session and translate user to session

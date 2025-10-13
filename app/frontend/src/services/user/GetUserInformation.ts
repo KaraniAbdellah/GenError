@@ -4,7 +4,7 @@
  */
 
 import axios from "axios";
-import UserType from "@/types/UserType";
+import UserType from "@/types/UserTypes";
 
 async function GetUserInformation() {
   try {

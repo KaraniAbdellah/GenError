@@ -1,4 +1,4 @@
-import UserType from "@/types/UserType";
+import UserType from "@/types/UserTypes";
 
 const userDataDemo: UserType = {
   id: "68e3a699b3d81f9ae7870f33",

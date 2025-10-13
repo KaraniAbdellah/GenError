@@ -29,4 +29,4 @@ interface UserType {
   message: string;
 }
 
-export default UserType;
+export { UserType, Session, Prompt, Output };
