@@ -1,9 +1,11 @@
 import { ArrowUpRight, Plus } from "lucide-react";
-import React, { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { AutosizeTextarea } from "@/components/autosize-textarea";
 import GetThingFromApi from "@/services/api/GetThingFromApi";
 import DisplayResultOfMainComponent from "./DisplayResultOfMainComponent";
-
+import { useContext } from "react";
+import userContext from "@/context/UserContext";
+import UserType from "@/types/UserType";
 
 const Main = () => {
   const [userPrompt, setUserPrompt] = useState<string>("");
@@ -16,7 +18,6 @@ const Main = () => {
     console.log(result);
   };
 
-  // this session as an example
   const session = {
     id: "68e3a6c2b3d81f9ae7870f36",
     session_name: "React Error",
@@ -41,6 +42,13 @@ const Main = () => {
       },
     ],
   };
+
+  const userData: UserType = useContext(userContext);
+
+  useEffect(() => {
+    console.log(userData);
+    return () => {};
+  }, []);
 
   return (
     <div className="min-h-[calc(100vh-58px)] p-6 flex flex-col justify-center">
@@ -96,11 +104,7 @@ const Main = () => {
 
 export default Main;
 
-
 // Set User Context and work with realy data
 // And Next Task is Rendring Session in Left Side
 // And Also When i Click to Session I Should be figure out Display Componet
 // and Also If I Click to Button for get errors i should be see if i am in session if it is good else i should create session and translate user to session
-
-
-

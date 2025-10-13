@@ -17,17 +17,16 @@ import { CornerDownRight } from "lucide-react";
 import { Link } from "react-router";
 import GetUserInformation from "@/services/user/GetUserInformation";
 import UserType from "@/types/UserType";
-import userDataContext from "@/context/UserContext";
-import { useContext } from "react";
-import { createContext } from "vm";
+import UserContext from "@/context/UserContext";
+import userDataDemo from "@/constant/userDataDemo";
 
 export default function Page() {
-  const UserContent = useContext(userDataContext);
-  const [userData, setUserData] = useState<UserType | null>();
-
+  const [userData, setUserData] = useState<UserType>(userDataDemo);
   async function main() {
     const reponseData: UserType | null = await GetUserInformation();
-    setUserData(() => reponseData);
+    if (reponseData) {
+      setUserData(() => reponseData);
+    }
   }
   useEffect(() => {
     main();
@@ -35,7 +34,7 @@ export default function Page() {
   }, []);
 
   return (
-    <UserContent.Provider value={userData}>
+    <UserContext.Provider value={userData}>
       <SidebarProvider>
         <SidebarLeft />
         <SidebarInset>
@@ -68,6 +67,7 @@ export default function Page() {
           </div>
         </SidebarInset>
       </SidebarProvider>
-    </UserContent.Provider>
+      //{" "}
+    </UserContext.Provider>
   );
 }
