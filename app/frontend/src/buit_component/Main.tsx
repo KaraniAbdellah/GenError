@@ -5,7 +5,9 @@ import GetThingFromApi from "@/services/api/GetThingFromApi";
 import DisplayResultOfMainComponent from "./DisplayResultOfMainComponent";
 import { useContext } from "react";
 import userContext from "@/context/UserContext";
-import { UserType } from "@/types/UserTypes";
+import { Session, UserType } from "@/types/UserTypes";
+import SessionContext from "@/context/SessionContext";
+import getUserSessionsName from "@/services/user/getUserSessionsName";
 
 const Main = () => {
   const [userPrompt, setUserPrompt] = useState<string>("");
@@ -44,7 +46,11 @@ const Main = () => {
   };
 
   const userData: UserType | null = useContext(userContext);
-  console.log(userData);
+  const sessionData: Session | null = useContext(SessionContext);
+  const sessions_name: string[] = getUserSessionsName(userData);
+  console.log("userData", userData);
+  console.log("sessionData", sessionData);
+  console.log("sessions_name", sessions_name);
 
   useEffect(() => {
     return () => {};

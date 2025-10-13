@@ -77,11 +77,11 @@ export function SidebarLeft({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
   const userData: UserType | null = useContext(userContext);
-  const sessionData: Session | null = useContext(SessionContext);
+  const [sessionData, setSessionData]: Session | null = useContext(SessionContext);
   const sessions_name: string[] = getUserSessionsName(userData);
-  console.log("userData", userData);
-  console.log("sessionData", sessionData);
-  console.log("sessions_name", sessions_name);
+  // console.log("userData", userData);
+  // console.log("sessionData", sessionData);
+  // console.log("sessions_name", sessions_name);
 
   return (
     <Sidebar className="border-r-0" {...props}>

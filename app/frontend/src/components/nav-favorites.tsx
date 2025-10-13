@@ -28,10 +28,10 @@ export function NavFavorites({
   }[];
 }) {
   const { isMobile } = useSidebar();
-  const getSessionId = (e, id) => {
-    console.log(e.target);
+  const getSessionId = (id: string) => {
     console.log(id);
     // Update The Context To Display It to Display Main Component
+    // setSessionData()
   };
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
@@ -40,10 +40,7 @@ export function NavFavorites({
         {favorites.map((item) => (
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
-              <button
-                onClick={(e) => getSessionId(e, item.id)}
-                title={item.name}
-              >
+              <button onClick={() => getSessionId(item.id)} title={item.name}>
                 <span>{item.name}</span>
               </button>
             </SidebarMenuButton>

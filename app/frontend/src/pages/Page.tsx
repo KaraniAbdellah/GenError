@@ -42,7 +42,7 @@ export default function Page() {
 
   return (
     <UserContext.Provider value={userData}>
-      <SessionContext.Provider value={sessionData}>
+      <SessionContext.Provider value={[sessionData, setSessionData]}>
         <SidebarProvider>
           <SidebarLeft />
           <SidebarInset>
