@@ -7,5 +7,5 @@ export default function getUserSessionsName(userData: UserType | null) {
       return session.session_name;
     });
   }
-  return sessionsName;
+  return sessionsName; // {session_name: 'session1', 'id'}
 }

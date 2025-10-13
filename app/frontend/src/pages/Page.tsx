@@ -16,12 +16,17 @@ import { useEffect, useState } from "react";
 import { CornerDownRight } from "lucide-react";
 import { Link } from "react-router";
 import GetUserInformation from "@/services/user/GetUserInformation";
-import { UserType } from "@/types/UserTypes";
+import { Session, UserType } from "@/types/UserTypes";
 import UserContext from "@/context/UserContext";
 import userDataDemo from "@/constant/userDataDemo";
+import SessionContext from "@/context/SessionContext";
+import sessionDataDemo from "@/constant/sessionDataDemo";
 
 export default function Page() {
-  const [userData, setUserData] = useState<UserType | null>(null);
+  const [userData, setUserData] = useState<UserType | null>(userDataDemo);
+  const [sessionData, setSessionData] = useState<Session | null>(
+    sessionDataDemo
+  );
   async function main() {
     const reponseData: UserType | null = await GetUserInformation();
     if (reponseData) {
@@ -31,45 +36,46 @@ export default function Page() {
     }
   }
   useEffect(() => {
-    main();
+    // main();
     return () => {};
   }, []);
 
   return (
     <UserContext.Provider value={userData}>
-      <SidebarProvider>
-        <SidebarLeft />
-        <SidebarInset>
-          <div>
-            <header className="bg-background sticky top-0 flex h-14 shrink-0 items-center gap-2 z-50 shadow">
-              <div className="flex flex-1 items-center gap-2 px-3">
-                <SidebarTrigger />
-                <Separator
-                  orientation="vertical"
-                  className="mr-2 data-[orientation=vertical]:h-4"
-                />
-                <Breadcrumb>
-                  <BreadcrumbList>
-                    <BreadcrumbItem>
-                      <BreadcrumbPage className="line-clamp-1"></BreadcrumbPage>
-                    </BreadcrumbItem>
-                  </BreadcrumbList>
-                </Breadcrumb>
-                <Link to="/login">
-                  <div className="flex items-center gap-2 bg-sky-100 border border-sky-300 text-sky-800 px-4 py-2 rounded-full shadow-sm hover:bg-sky-200 transition-all cursor-pointer">
-                    <p className="flex">
-                      <CornerDownRight className="mr-3" />
-                      Login to save your prompts
-                    </p>
-                  </div>
-                </Link>
-              </div>
-            </header>
-            <Main />
-          </div>
-        </SidebarInset>
-      </SidebarProvider>
-      //{" "}
+      <SessionContext.Provider value={sessionData}>
+        <SidebarProvider>
+          <SidebarLeft />
+          <SidebarInset>
+            <div>
+              <header className="bg-background sticky top-0 flex h-14 shrink-0 items-center gap-2 z-50 shadow">
+                <div className="flex flex-1 items-center gap-2 px-3">
+                  <SidebarTrigger />
+                  <Separator
+                    orientation="vertical"
+                    className="mr-2 data-[orientation=vertical]:h-4"
+                  />
+                  <Breadcrumb>
+                    <BreadcrumbList>
+                      <BreadcrumbItem>
+                        <BreadcrumbPage className="line-clamp-1"></BreadcrumbPage>
+                      </BreadcrumbItem>
+                    </BreadcrumbList>
+                  </Breadcrumb>
+                  <Link to="/login">
+                    <div className="flex items-center gap-2 bg-sky-100 border border-sky-300 text-sky-800 px-4 py-2 rounded-full shadow-sm hover:bg-sky-200 transition-all cursor-pointer">
+                      <p className="flex">
+                        <CornerDownRight className="mr-3" />
+                        Login to save your prompts
+                      </p>
+                    </div>
+                  </Link>
+                </div>
+              </header>
+              <Main />
+            </div>
+          </SidebarInset>
+        </SidebarProvider>
+      </SessionContext.Provider>
     </UserContext.Provider>
   );
 }
