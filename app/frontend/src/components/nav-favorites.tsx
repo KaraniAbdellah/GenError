@@ -18,34 +18,35 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { useContext } from "react";
+import SessionContext from "@/context/SessionContext";
+import { Session } from "@/types/UserTypes";
 
-export function NavFavorites({
-  favorites,
-}: {
-  favorites: {
-    name: string;
-    id: string;
-  }[];
-}) {
+export function NavFavorites({ favorites }: { favorites: Session[] }) {
+  console.log("favorites", favorites);
   const { isMobile } = useSidebar();
-  const getSessionId = (id: string) => {
-    console.log(id);
-    // Update The Context To Display It to Display Main Component
-    // setSessionData()
+  const [sessionData, setSessionData] = useContext(SessionContext);
+
+  const getSessionId = (item: Session) => {
+    console.log(item);
+    setSessionData(() => item);
   };
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
       <SidebarGroupLabel>Prompts</SidebarGroupLabel>
       <SidebarMenu>
         {favorites.map((item) => (
-          <SidebarMenuItem key={item.name}>
+          <SidebarMenuItem key={item.session_name}>
             <SidebarMenuButton asChild className="cursor-pointer">
-              <button onClick={() => getSessionId(item.id)} title={item.name}>
-                <span>{item.name}</span>
+              <button
+                onClick={() => getSessionId(item)}
+                title={item.session_name}
+              >
+                <span>{item.session_name}</span>
               </button>
             </SidebarMenuButton>
             <DropdownMenu>
-              <DropdownMenuTrigger asChild  className="cursor-pointer">
+              <DropdownMenuTrigger asChild className="cursor-pointer">
                 <SidebarMenuAction showOnHover>
                   <MoreHorizontal />
                   <span className="sr-only">More</span>
@@ -56,7 +57,7 @@ export function NavFavorites({
                 side={isMobile ? "bottom" : "right"}
                 align={isMobile ? "end" : "start"}
               >
-                <DropdownMenuItem >
+                <DropdownMenuItem>
                   <Link className="text-muted-foreground" />
                   <span>Copy Link</span>
                 </DropdownMenuItem>

@@ -1,56 +1,25 @@
 import { ArrowUpRight, Plus } from "lucide-react";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 import { AutosizeTextarea } from "@/components/autosize-textarea";
 import GetThingFromApi from "@/services/api/GetThingFromApi";
 import DisplayResultOfMainComponent from "./DisplayResultOfMainComponent";
-import { useContext } from "react";
-import userContext from "@/context/UserContext";
-import { Session, UserType } from "@/types/UserTypes";
+import { Session } from "@/types/UserTypes";
 import SessionContext from "@/context/SessionContext";
-import getUserSessionsName from "@/services/user/getUserSessions";
+
 
 const Main = () => {
   const [userPrompt, setUserPrompt] = useState<string>("");
   const handleUserPromptChange = (e: FormEvent<HTMLFormElement>) => {
     setUserPrompt(() => e.target.value);
   };
+  const [sessionData]: Session | null = useContext(SessionContext);
 
   const DisplayInput = async () => {
     const result = await GetThingFromApi(userPrompt);
     console.log(result);
   };
 
-  const session = {
-    id: "68e3a6c2b3d81f9ae7870f36",
-    session_name: "React Error",
-    user_id: "68e3a699b3d81f9ae7870f33",
-    Prompts: [
-      {
-        id: "68e3a6eab3d81f9ae7870f39",
-        prompt_text: "Why my component shows a blank page?",
-        session_id: "68e3a6c2b3d81f9ae7870f36",
-        Output: {
-          id: "68e3a775321fd5e8d6c64b4c",
-          messages: [
-            "Component can’t read prompt data.",
-            "Missing or undefined state value.",
-            "Check if props are passed correctly.",
-            "Reload and try again.",
-          ],
-          explanation:
-            "The component may try to access data before it exists. Use conditional rendering or check if data is loaded before displaying.",
-          prompt_id: "68e3a6eab3d81f9ae7870f39",
-        },
-      },
-    ],
-  };
 
-  const userData: UserType | null = useContext(userContext);
-  const sessionData: Session | null = useContext(SessionContext);
-  const sessions_name: string[] = getUserSessionsName(userData);
-  console.log("userData", userData);
-  console.log("sessionData", sessionData);
-  console.log("sessions_name", sessions_name);
 
   useEffect(() => {
     return () => {};
@@ -59,7 +28,7 @@ const Main = () => {
   return (
     <div className="min-h-[calc(100vh-58px)] p-6 flex flex-col justify-center">
       <DisplayResultOfMainComponent
-        session={session}
+        session={sessionData}
       ></DisplayResultOfMainComponent>
 
       <div className="entry sm:mx-2 md:mx-5 lg:mx-8">
@@ -109,7 +78,6 @@ const Main = () => {
 };
 
 export default Main;
-
 
 // And Also When i Click to Session I Should be figure out Display Componet --> change Session that exit in sessionContext
 

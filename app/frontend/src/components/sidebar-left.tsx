@@ -37,9 +37,8 @@ export function SidebarLeft({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
   const userData: UserType | null = useContext(userContext);
-  const [sessionData, setSessionData]: Session | null =
-    useContext(SessionContext);
-  const sessions: { name: string; id: string }[] = getUserSessions(userData);
+  const [sessionData]: Session | null = useContext(SessionContext);
+  const sessions: Session = userData?.Sessions;
 
   const data = {
     teams: [
@@ -74,10 +73,6 @@ export function SidebarLeft({
     ],
     favorites: sessions,
   };
-
-  // console.log("userData", userData);
-  // console.log("sessionData", sessionData);
-  // console.log("sessions_name", sessions_name);
 
   return (
     <Sidebar className="border-r-0" {...props}>
