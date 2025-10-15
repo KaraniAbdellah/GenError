@@ -12,11 +12,11 @@ const userDataDemo: UserType = {
       Prompts: [
         {
           id: "68e3a6eab3d81f9ae7870f39",
-          prompt_text: "Give Me A Custom Error Here",
+          prompt_text: "Give Me A Custom Error Here Session 1",
           session_id: "68e3a6c2b3d81f9ae7870f36",
           Output: {
             id: "68e3a775321fd5e8d6c64b4c",
-            messages: [],
+            messages: ["A Session 1", "B Session 1", "C Session 1", "D Session 1"],
             explanation: "Hello",
             prompt_id: "68e3a6eab3d81f9ae7870f39",
           },
@@ -30,11 +30,11 @@ const userDataDemo: UserType = {
       Prompts: [
         {
           id: "68e3a6eab3d81f9ae7870f39",
-          prompt_text: "Give Me A Custom Error Here",
+          prompt_text: "Give Me A Custom Error Here Session 2",
           session_id: "68e3a6c2b3d81f9ae7870f36",
           Output: {
             id: "68e3a775321fd5e8d6c64b4c",
-            messages: [],
+            messages: ["A Session 2", "B Session 2", "C Session 2", "D Session 2"],
             explanation: "Hello",
             prompt_id: "68e3a6eab3d81f9ae7870f39",
           },
