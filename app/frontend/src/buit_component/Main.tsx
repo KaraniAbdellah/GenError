@@ -7,7 +7,7 @@ import { useContext } from "react";
 import userContext from "@/context/UserContext";
 import { Session, UserType } from "@/types/UserTypes";
 import SessionContext from "@/context/SessionContext";
-import getUserSessionsName from "@/services/user/getUserSessionsName";
+import getUserSessionsName from "@/services/user/getUserSessions";
 
 const Main = () => {
   const [userPrompt, setUserPrompt] = useState<string>("");
@@ -110,7 +110,7 @@ const Main = () => {
 
 export default Main;
 
-// At Begining Work With Real Data
-// And Next Task is Rendring Session in Left Side
+
 // And Also When i Click to Session I Should be figure out Display Componet --> change Session that exit in sessionContext
+
 // and Also If I Click to Button for get errors i should be see if i am in session if it is good else i should create session and translate user to session

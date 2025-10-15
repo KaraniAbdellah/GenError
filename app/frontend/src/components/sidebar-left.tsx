@@ -20,50 +20,10 @@ import {
 import { useContext } from "react";
 import userContext from "@/context/UserContext";
 import { Session, UserType } from "@/types/UserTypes";
-import getUserSessionsName from "@/services/user/getUserSessionsName";
+import getUserSessions from "@/services/user/getUserSessions";
 import SessionContext from "@/context/SessionContext";
 
 // This is sample data.
-const data = {
-  teams: [
-    {
-      name: "GenError V0.1",
-      logo: Command,
-    },
-  ],
-  navMain: [
-    {
-      title: "Ask AI",
-      url: "#",
-      icon: Sparkles,
-    },
-    {
-      title: "Home",
-      url: "/",
-      icon: Home,
-      isActive: true,
-    },
-    {
-      title: "About",
-      url: "/about",
-      icon: User,
-      badge: "10",
-    },
-    {
-      title: "Help",
-      url: "/help",
-      icon: MessageCircleQuestion,
-    },
-  ],
-  favorites: [
-    // sessions
-    {
-      name: "Project Management & Task Tracking",
-      id: "i am here (your id)", // this an id
-    },
-  ],
-};
-
 const user_data = {
   user: {
     name: "shadcn",
@@ -77,8 +37,44 @@ export function SidebarLeft({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
   const userData: UserType | null = useContext(userContext);
-  const [sessionData, setSessionData]: Session | null = useContext(SessionContext);
-  const sessions_name: string[] = getUserSessionsName(userData);
+  const [sessionData, setSessionData]: Session | null =
+    useContext(SessionContext);
+  const sessions: { name: string; id: string }[] = getUserSessions(userData);
+
+  const data = {
+    teams: [
+      {
+        name: "GenError V0.1",
+        logo: Command,
+      },
+    ],
+    navMain: [
+      {
+        title: "Ask AI",
+        url: "#",
+        icon: Sparkles,
+      },
+      {
+        title: "Home",
+        url: "/",
+        icon: Home,
+        isActive: true,
+      },
+      {
+        title: "About",
+        url: "/about",
+        icon: User,
+        badge: "10",
+      },
+      {
+        title: "Help",
+        url: "/help",
+        icon: MessageCircleQuestion,
+      },
+    ],
+    favorites: sessions,
+  };
+
   // console.log("userData", userData);
   // console.log("sessionData", sessionData);
   // console.log("sessions_name", sessions_name);
