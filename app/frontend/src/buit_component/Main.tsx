@@ -79,6 +79,11 @@ const Main = () => {
 
 export default Main;
 
-// And Also When i Click to Session I Should be figure out Display Componet --> change Session that exit in sessionContext
 
-// and Also If I Click to Button for get errors i should be see if i am in session if it is good else i should create session and translate user to session
+// Try to fix problem of fixed entry
+// When i write prompt should save it into session with user
+// If user does not login do not show him the sessions, accounts, show him login for save your sessions --> remove demoUserData
+// impelment case if user does not login --> do not save anything just rendre to him the prompts in refresh all thing should be go
+// impelment the user login
+
+
