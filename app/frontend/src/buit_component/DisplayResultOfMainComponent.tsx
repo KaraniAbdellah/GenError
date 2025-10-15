@@ -29,7 +29,7 @@ const DisplayResultOfMainComponent = ({ session }) => {
   return (
     <section className="sm:mx-2 md:mx-5 lg:mx-8">
       <div className="mb-6  p-1 rounded-xl bg-gradient-to-br">
-        {session.Prompts.map((prompt) => (
+        {session?.Prompts?.map((prompt) => (
           <div
             key={prompt.id}
             className="mb-4 p-4 rounded-xl

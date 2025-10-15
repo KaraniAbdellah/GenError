@@ -23,9 +23,9 @@ import SessionContext from "@/context/SessionContext";
 import sessionDataDemo from "@/constant/sessionDataDemo";
 
 export default function Page() {
-  const [userData, setUserData] = useState<UserType | null>(userDataDemo);
+  const [userData, setUserData] = useState<UserType | null>(null);
   const [sessionData, setSessionData] = useState<Session | null>(
-    sessionDataDemo
+    null
   );
   async function main() {
     const reponseData: UserType | null = await GetUserInformation();

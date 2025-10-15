@@ -35,7 +35,7 @@ export function NavFavorites({ favorites }: { favorites: Session[] }) {
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
       <SidebarGroupLabel>Prompts</SidebarGroupLabel>
       <SidebarMenu>
-        {favorites.map((item) => (
+        {favorites?.length && favorites.map((item) => (
           <SidebarMenuItem key={item.session_name}>
             <SidebarMenuButton asChild className="cursor-pointer">
               <button
