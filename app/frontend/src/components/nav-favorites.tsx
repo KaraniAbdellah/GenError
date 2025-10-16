@@ -22,57 +22,58 @@ import { useContext } from "react";
 import SessionContext from "@/context/SessionContext";
 import { Session } from "@/types/UserTypes";
 
-export function NavFavorites({ favorites }: { favorites: Session[] }) {
+export function NavFavorites({ favorites }: { favorites: Session[] | null }) {
   const { isMobile } = useSidebar();
   const [sessionData, setSessionData] = useContext(SessionContext);
 
   const getSessionId = (item: Session) => {
-    console.log(item);
+    console.log("Session Clicked is: ", item);
     setSessionData(() => item);
   };
   return (
-    <SidebarGroup className="group-data-[collapsible=icon]:hidden">
+    <SidebarGroup className={favorites?.length ? `group-data-[collapsible=icon]:hidden`: "group-data-[collapsible=icon]:hidden hidden"}>
       <SidebarGroupLabel>Prompts</SidebarGroupLabel>
       <SidebarMenu>
-        {favorites?.length && favorites.map((item) => (
-          <SidebarMenuItem key={item.session_name}>
-            <SidebarMenuButton asChild className="cursor-pointer">
-              <button
-                onClick={() => getSessionId(item)}
-                title={item.session_name}
-              >
-                <span>{item.session_name}</span>
-              </button>
-            </SidebarMenuButton>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild className="cursor-pointer">
-                <SidebarMenuAction showOnHover>
-                  <MoreHorizontal />
-                  <span className="sr-only">More</span>
-                </SidebarMenuAction>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                className="w-56 rounded-lg"
-                side={isMobile ? "bottom" : "right"}
-                align={isMobile ? "end" : "start"}
-              >
-                <DropdownMenuItem>
-                  <Link className="text-muted-foreground" />
-                  <span>Copy Link</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <ArrowUpRight className="text-muted-foreground" />
-                  <span>Open in New Tab</span>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <Trash2 className="text-muted-foreground" />
-                  <span>Delete</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </SidebarMenuItem>
-        ))}
+        {favorites?.length &&
+          favorites.map((item) => (
+            <SidebarMenuItem key={item.session_name}>
+              <SidebarMenuButton asChild className="cursor-pointer">
+                <button
+                  onClick={() => getSessionId(item)}
+                  title={item.session_name}
+                >
+                  <span>{item.session_name}</span>
+                </button>
+              </SidebarMenuButton>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild className="cursor-pointer">
+                  <SidebarMenuAction showOnHover>
+                    <MoreHorizontal />
+                    <span className="sr-only">More</span>
+                  </SidebarMenuAction>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  className="w-56 rounded-lg"
+                  side={isMobile ? "bottom" : "right"}
+                  align={isMobile ? "end" : "start"}
+                >
+                  <DropdownMenuItem>
+                    <Link className="text-muted-foreground" />
+                    <span>Copy Link</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <ArrowUpRight className="text-muted-foreground" />
+                    <span>Open in New Tab</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <Trash2 className="text-muted-foreground" />
+                    <span>Delete</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </SidebarMenuItem>
+          ))}
         <SidebarMenuItem>
           <SidebarMenuButton className="text-sidebar-foreground/70">
             <MoreHorizontal />

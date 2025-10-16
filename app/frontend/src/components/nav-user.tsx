@@ -27,12 +27,13 @@ export function NavUser({
     name: string;
     email: string;
     avatar: string;
+    isExit: boolean;
   };
 }) {
   const { isMobile } = useSidebar();
 
   return (
-    <SidebarMenu>
+    <SidebarMenu className={user.isExit ? "" : "hidden"}>
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

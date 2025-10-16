@@ -19,13 +19,10 @@ import GetUserInformation from "@/services/user/GetUserInformation";
 import { Session, UserType } from "@/types/UserTypes";
 import UserContext from "@/context/UserContext";
 import SessionContext from "@/context/SessionContext";
-import sessionDataDemo from "@/constant/sessionDataDemo";
 
 export default function Page() {
   const [userData, setUserData] = useState<UserType | null>(null);
-  const [sessionData, setSessionData] = useState<Session | null>(
-    sessionDataDemo
-  );
+  const [sessionData, setSessionData] = useState<Session[] | null>();
   async function main() {
     const reponseData: UserType | null = await GetUserInformation();
     if (reponseData) {
