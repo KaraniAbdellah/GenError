@@ -23,7 +23,6 @@ import SessionContext from "@/context/SessionContext";
 import { Session } from "@/types/UserTypes";
 
 export function NavFavorites({ favorites }: { favorites: Session[] }) {
-  console.log("favorites", favorites);
   const { isMobile } = useSidebar();
   const [sessionData, setSessionData] = useContext(SessionContext);
 

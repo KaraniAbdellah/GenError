@@ -18,27 +18,27 @@ import { Link } from "react-router";
 import GetUserInformation from "@/services/user/GetUserInformation";
 import { Session, UserType } from "@/types/UserTypes";
 import UserContext from "@/context/UserContext";
-import userDataDemo from "@/constant/userDataDemo";
 import SessionContext from "@/context/SessionContext";
 import sessionDataDemo from "@/constant/sessionDataDemo";
 
 export default function Page() {
   const [userData, setUserData] = useState<UserType | null>(null);
   const [sessionData, setSessionData] = useState<Session | null>(
-    null
+    sessionDataDemo
   );
   async function main() {
     const reponseData: UserType | null = await GetUserInformation();
     if (reponseData) {
       setUserData(() => reponseData);
     } else {
-      setUserData(() => userDataDemo);
+      setUserData(() => null);
     }
   }
   useEffect(() => {
-    // main();
+    main();
+    console.log("userData From Main", userData);
     return () => {};
-  }, []);
+  }, [userData]);
 
   return (
     <UserContext.Provider value={userData}>
@@ -46,7 +46,7 @@ export default function Page() {
         <SidebarProvider>
           <SidebarLeft />
           <SidebarInset>
-            <div>
+            <div className="relative">
               <header className="bg-background sticky top-0 flex h-14 shrink-0 items-center gap-2 z-50 shadow">
                 <div className="flex flex-1 items-center gap-2 px-3">
                   <SidebarTrigger />
