@@ -58,14 +58,18 @@ export default function Page() {
                       </BreadcrumbItem>
                     </BreadcrumbList>
                   </Breadcrumb>
-                  <Link to="/login">
-                    <div className="flex items-center gap-2 bg-sky-100 border border-sky-300 text-sky-800 px-4 py-2 rounded-full shadow-sm hover:bg-sky-200 transition-all cursor-pointer">
-                      <p className="flex">
-                        <CornerDownRight className="mr-3" />
-                        Login to save your prompts
-                      </p>
-                    </div>
-                  </Link>
+                  {!userData ? (
+                    <Link to="/login">
+                      <div className="flex items-center gap-2 bg-sky-100 border border-sky-300 text-sky-800 px-4 py-2 rounded-full shadow-sm hover:bg-sky-200 transition-all cursor-pointer">
+                        <p className="flex">
+                          <CornerDownRight className="mr-3" />
+                          Login to save your prompts
+                        </p>
+                      </div>
+                    </Link>
+                  ) : (
+                    "Welcome Again @" + userData.name
+                  )}
                 </div>
               </header>
               <Main />
