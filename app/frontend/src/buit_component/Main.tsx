@@ -103,6 +103,4 @@ export default Main;
 
 // Try to fix problem of fixed entry
 // When i write prompt should save it into session with user
-// If user does not login do not show him the sessions, accounts, show him login for save your sessions --> remove demoUserData
-// impelement case if user does not login --> do not save anything just rendre to him the prompts in refresh all thing should be go
 // impelement the user login
