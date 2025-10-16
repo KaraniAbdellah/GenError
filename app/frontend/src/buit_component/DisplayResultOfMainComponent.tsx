@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import RenderMessageCardByFlag from "@/services/utils/RenderMessageCardByFlag";
 
+
 const DisplayResultOfMainComponent = ({ session }) => {
   const CopyToClipboard = (content: string) => {
     navigator.clipboard.writeText(content);
@@ -72,7 +73,7 @@ const DisplayResultOfMainComponent = ({ session }) => {
                   Validation Messages
                 </p>
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
-                  {prompt?.Output?.messages.length &&
+                  {prompt?.Output?.messages?.length &&
                     RenderMessageCardByFlag(prompt?.Output?.messages).length >
                       0 &&
                     RenderMessageCardByFlag(prompt?.Output?.messages).map(

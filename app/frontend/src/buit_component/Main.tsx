@@ -3,12 +3,16 @@ import { FormEvent, useContext, useEffect, useState } from "react";
 import { AutosizeTextarea } from "@/components/autosize-textarea";
 import GetThingFromApi from "@/services/api/GetThingFromApi";
 import DisplayResultOfMainComponent from "./DisplayResultOfMainComponent";
-import { Session } from "@/types/UserTypes";
+import { Session, UserType } from "@/types/UserTypes";
 import SessionContext from "@/context/SessionContext";
-
+import userContext from "@/context/UserContext";
+import sessionDataDemo from "@/constant/sessionDataDemo";
 
 const Main = () => {
   const [userPrompt, setUserPrompt] = useState<string>("");
+  const userData: UserType | null = useContext(userContext);
+  const [userDemoSession, setUserDemoSession] = useState<Session>();
+
   const handleUserPromptChange = (e: FormEvent<HTMLFormElement>) => {
     setUserPrompt(() => e.target.value);
   };
@@ -17,9 +21,28 @@ const Main = () => {
   const DisplayInput = async () => {
     const result = await GetThingFromApi(userPrompt);
     console.log(result);
+
+    const session: Session = {
+      id: "123456789_session_id",
+      session_name: result.title,
+      user_id: "anonymous user",
+      Prompts: [
+        {
+          id: "123456789_prompt_id",
+          prompt_text: userPrompt,
+          session_id: "123456789_session_id",
+          Output: {
+            id: "123456789_output_id",
+            messages: result.messages,
+            explanation: result.explanation,
+            prompt_id: "123456789_prompt_id",
+          },
+        },
+      ],
+    };
+
+    setUserDemoSession(() => session);
   };
-
-
 
   useEffect(() => {
     return () => {};
@@ -27,7 +50,7 @@ const Main = () => {
   return (
     <div className="min-h-[calc(100vh-58px)] p-6 flex flex-col justify-center w-full relative">
       <DisplayResultOfMainComponent
-        session={sessionData}
+        session={userData ? sessionData : userDemoSession}
       ></DisplayResultOfMainComponent>
 
       <div className="entry sm:mx-2 md:mx-5 lg:mx-8 bg-gray-100">
@@ -78,11 +101,8 @@ const Main = () => {
 
 export default Main;
 
-
 // Try to fix problem of fixed entry
 // When i write prompt should save it into session with user
 // If user does not login do not show him the sessions, accounts, show him login for save your sessions --> remove demoUserData
 // impelement case if user does not login --> do not save anything just rendre to him the prompts in refresh all thing should be go
 // impelement the user login
-
-

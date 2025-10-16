@@ -12,7 +12,7 @@ const sessionDataDemo: Session = {
       Output: {
         id: "68e3a775321fd5e8d6c64b4c",
         messages: [
-          "Component can’t read prompt data.",
+          "Component can't read prompt data.",
           "Missing or undefined state value.",
           "Check if props are passed correctly.",
           "Reload and try again.",
