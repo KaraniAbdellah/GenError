@@ -48,12 +48,13 @@ const Main = () => {
     return () => {};
   }, []);
   return (
-    <div className="min-h-[calc(100vh-58px)] p-6 flex flex-col justify-center w-full relative">
+    <div className="min-h-[calc(100vh-58px)] p-6 flex flex-col justify-center items-center w-full relative">
       <DisplayResultOfMainComponent
         session={userData ? sessionData : userDemoSession}
       ></DisplayResultOfMainComponent>
 
-      <div className="entry sm:mx-2 md:mx-5 lg:mx-8 bg-gray-100">
+
+      <div className="entry sm:mx-2 md:mx-5 lg:mx-8 bg-gray-100 fixed w-full">
         <div className="border border-zinc-300 p-2 w-full rounded-md gap-4 shadow-sm">
           <form onSubmit={DisplayInput} className="w-full mb-2">
             <AutosizeTextarea
