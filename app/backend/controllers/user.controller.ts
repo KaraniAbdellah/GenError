@@ -8,6 +8,7 @@ const userClient = new PrismaClient().user;
 export const addUser: RequestHandler = async (req: Request, res: Response) => {
   try {
     const newUser: userCreateType = req.body;
+    console.log(newUser);
 
     // Check if user already login --> we can not push into database
     const user: userType | null = await userClient.findUnique({
@@ -17,9 +18,9 @@ export const addUser: RequestHandler = async (req: Request, res: Response) => {
       },
     });
     if (user) {
-      const token = generateToken(user);
+      const token = generateToken(user, res);
       return res
-        .status(200)
+        .status(409)
         .send({ user_token: token, message: "user already exit" });
     }
 
@@ -41,7 +42,7 @@ export const addUser: RequestHandler = async (req: Request, res: Response) => {
     });
 
     // Generate A Token for user
-    const token = generateToken(auth_user);
+    const token = generateToken(auth_user, res);
 
     return res.status(200).send({ user_token: token });
   } catch (error) {
