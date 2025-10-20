@@ -1,6 +1,6 @@
 import { Command } from "lucide-react";
 import { LoginForm } from "@/components/login-form";
-import login_image from "../../public/login_image.webp";
+import login_image from "/login_image.webp?url";
 
 export default function Login() {
   return (

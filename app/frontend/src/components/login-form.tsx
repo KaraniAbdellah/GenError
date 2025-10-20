@@ -41,23 +41,23 @@ export function LoginForm({
         <Field>
           <FieldLabel htmlFor="name">Name</FieldLabel>
           <Input
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
             id="name"
             type="name"
             placeholder="John Deo"
             required
-            value={email}
+            value={name}
           />
         </Field>
         <Field>
           <FieldLabel htmlFor="email">Email</FieldLabel>
           <Input
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             id="email"
             type="email"
             placeholder="m@example.com"
             required
-            value={name}
+            value={email}
           />
         </Field>
         <Field>

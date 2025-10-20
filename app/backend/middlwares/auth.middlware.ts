@@ -11,7 +11,7 @@ export const authMiddlware: RequestHandler = (
 ) => {
   console.log("Hello from auth middlware");
   try {
-    const token: string | undefined = req.headers.authorization?.split(" ")[1];
+    const token: string | undefined = req.headers.cookie?.split("=")[1];
     if (!token) {
       return res.status(404).json({ message: "Token Does Not Found" });
     }

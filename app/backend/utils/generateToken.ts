@@ -12,10 +12,10 @@ const generateToken = (user: userType | null, res: Response) => {
     const token: string = jwt.sign({ user: userToSend }, config.secret_key, {
       expiresIn: config.token_time,
     });
-    res.cookie("user_token", {
+    res.cookie("user_token", token, {
       httpOnly: true,
       secure: true, // send cookie under https
-      sameSite: "None", // Allows cross-site cookies
+      sameSite: "none", // Allows cross-site cookies
       maxAge: 15 * 24 * 60 * 60 * 1000,
     });
     return token;

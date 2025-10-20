@@ -14,7 +14,6 @@ export const addUser: RequestHandler = async (req: Request, res: Response) => {
     const user: userType | null = await userClient.findUnique({
       where: {
         email: newUser.email,
-        name: newUser.name,
       },
     });
     if (user) {

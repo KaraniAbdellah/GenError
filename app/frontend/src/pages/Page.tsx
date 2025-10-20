@@ -33,9 +33,8 @@ export default function Page() {
   }
   useEffect(() => {
     main();
-    console.log("userData From Main", userData);
     return () => {};
-  }, [userData]);
+  }, []);
 
   return (
     <UserContext.Provider value={userData}>

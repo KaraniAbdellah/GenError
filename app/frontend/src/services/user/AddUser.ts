@@ -7,8 +7,12 @@ async function addUser(data: { name: string; email: string }) {
       data,
       { withCredentials: true }
     );
+    // document.cookie = `user_token=${
+    //   response.data.user_token
+    // }; Secure; SameSite=None; Max-Age=${15 * 24 * 60 * 60}`;
     console.log(response);
   } catch (error) {
+    console.log(error);
     return null;
   }
 }
