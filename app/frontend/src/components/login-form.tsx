@@ -33,9 +33,9 @@ export function LoginForm({
     >
       <FieldGroup>
         <div className="flex flex-col items-center gap-1 text-center">
-          <h1 className="text-2xl font-bold">Login to your account</h1>
+          <h1 className="text-2xl font-bold">Open The Doot By :)</h1>
           <p className="text-muted-foreground text-sm text-balance">
-            Enter your email and your name
+            Entering your email and your name
           </p>
         </div>
         <Field>
@@ -62,14 +62,14 @@ export function LoginForm({
         </Field>
         <Field>
           <Button className="cursor-pointer" type="submit">
-            Login
+            Open The Door
           </Button>
         </Field>
-        <FieldSeparator>Or continue with</FieldSeparator>
+        <FieldSeparator>Or Open it</FieldSeparator>
         <Field>
           <Button className="cursor-pointer" variant="outline" type="button">
             <FaGoogle />
-            Login with Google
+            with Google
           </Button>
         </Field>
       </FieldGroup>
