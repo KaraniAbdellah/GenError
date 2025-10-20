@@ -21,6 +21,7 @@ const Main = () => {
   const [sessionData]: Session | null = useContext(SessionContext);
 
   const DisplayInput = async () => {
+    console.log("Hello Entry");
     if (!userPrompt.trim() || isLoading) return;
     setIsLoading(true);
     try {
@@ -185,19 +186,6 @@ const Main = () => {
             </div>
           </div>
         </div>
-
-        {/* Keyboard Hint */}
-        {userPrompt.length > 0 && !isLoading && (
-          <div className="text-center mt-2 animate-fade-in animate-bounce">
-            <span className="text-xs text-gray-500 bg-white/60 backdrop-blur-sm px-3 py-1 rounded-full border border-gray-200/50">
-              Press{" "}
-              <kbd className="px-2 py-0.5 bg-gray-100 border border-gray-300 rounded text-xs font-semibold">
-                Enter
-              </kbd>{" "}
-              to send
-            </span>
-          </div>
-        )}
       </div>
     </div>
   );
