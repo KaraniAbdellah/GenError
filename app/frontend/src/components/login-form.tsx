@@ -7,22 +7,56 @@ import {
   FieldSeparator,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { FaGoogle } from "react-icons/fa";
 import { useState } from "react";
 import addUser from "@/services/user/AddUser";
+import { toast } from "react-hot-toast";
+import { CredentialResponse, GoogleOAuthProvider } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
+import GooglePayload from "@/types/GooglePayload";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
-  const SubmitUser = (e) => {
+  const SubmitUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data: { name: string; email: string } = {
       name,
       email,
     };
-    addUser(data);
+    const isUserAdded = await addUser(data);
+    if (isUserAdded) {
+      window.location.href="/";
+      console.log("We Must Navigate to /");
+    } else {
+      toast.error("Something Wrong Try Again Please", {
+        duration: 2000,
+        position: "bottom-right",
+      });
+    }
   };
+
+  const SubmitUserWithGoogle = async (credentiels: CredentialResponse) => {
+    if (!credentiels.credential) return;
+
+    const decoded = jwtDecode<GooglePayload>(credentiels.credential);
+    if (!decoded) {
+      toast.error("Something Error, Please Refresh The Page");
+      return;
+    }
+    const data = { name: decoded?.name, email: decoded?.email };
+    const isUserAdded = await addUser(data);
+    if (isUserAdded) {
+      window.location.href="/";
+      console.log("We Must Navigate to /");
+    } else
+      toast.error("Something Wrong Try Again Please", {
+        duration: 2000,
+        position: "bottom-right",
+      });
+  };
+
   const [email, setEmail] = useState<string>("");
   const [name, setName] = useState<string>("");
   return (
@@ -33,7 +67,7 @@ export function LoginForm({
     >
       <FieldGroup>
         <div className="flex flex-col items-center gap-1 text-center">
-          <h1 className="text-2xl font-bold">Open The Doot By :)</h1>
+          <h1 className="text-2xl font-bold">Open The Door By :)</h1>
           <p className="text-muted-foreground text-sm text-balance">
             Entering your email and your name
           </p>
@@ -66,12 +100,16 @@ export function LoginForm({
           </Button>
         </Field>
         <FieldSeparator>Or Open it</FieldSeparator>
-        <Field>
-          <Button className="cursor-pointer" variant="outline" type="button">
-            <FaGoogle />
-            with Google
-          </Button>
-        </Field>
+        <GoogleOAuthProvider clientId={import.meta.env.VITE_CLIENT_ID}>
+          <GoogleLogin
+            onSuccess={(credentialResponse: CredentialResponse) =>
+              SubmitUserWithGoogle(credentialResponse)
+            }
+            onError={() => {
+              toast.error("Can't Login, Try Again Please!");
+            }}
+          />
+        </GoogleOAuthProvider>
       </FieldGroup>
     </form>
   );

@@ -28,7 +28,7 @@ const DisplayResultOfMainComponent = ({ session }) => {
   };
 
   return (
-    <section className="sm:mx-2 md:mx-5 lg:mx-8 mb-[130px]">
+    <section className="sm:mx-2 md:mx-5 lg:mx-8 mb-[130px] mt-3">
       <div className="mb-6  p-1 rounded-xl bg-gradient-to-br">
         {session?.Prompts?.map((prompt) => (
           <div

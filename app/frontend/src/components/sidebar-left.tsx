@@ -20,6 +20,7 @@ import {
 import { useContext } from "react";
 import userContext from "@/context/UserContext";
 import { Session, UserType } from "@/types/UserTypes";
+import avatar from "/avatar.webp?url";
 
 // This is sample data.
 
@@ -31,7 +32,7 @@ export function SidebarLeft({
   const userInfo = {
     name: userData?.name || "John",
     email: userData?.email || "john123@gmail.com",
-    avatar: "https://avatar.iran.liara.run/public",
+    avatar: avatar,
     isExit: userData ? true : false,
   };
 

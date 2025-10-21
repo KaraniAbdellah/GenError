@@ -11,6 +11,7 @@ import UserContext from "@/context/UserContext";
 import SessionContext from "@/context/SessionContext";
 import { useEffect, useState } from "react";
 import { Session, UserType } from "./types/UserTypes";
+import { Toaster } from "react-hot-toast";
 import GetUserInformation from "./services/user/GetUserInformation";
 
 function App() {
@@ -25,14 +26,14 @@ function App() {
     }
   }
   useEffect(() => {
-    // main();
+    main();
     return () => {};
   }, []);
   return (
-    <UserContext.Provider value={userData}>
-      <SessionContext.Provider value={[sessionData, setSessionData]}>
-        <div className="h-screen bg-zinc-800 w-full">
-          <BrowserRouter>
+    <BrowserRouter>
+      <UserContext.Provider value={userData}>
+        <SessionContext.Provider value={[sessionData, setSessionData]}>
+          <div className="h-screen bg-zinc-800 w-full relative">
             <Routes>
               <Route element={<PrivateRoutes />}>
                 <Route path="/" element={<Page />}></Route>
@@ -43,10 +44,11 @@ function App() {
               <Route path="/login" element={<Login />}></Route>
               <Route path="/account" element={<Account />}></Route>
             </Routes>
-          </BrowserRouter>
-        </div>
-      </SessionContext.Provider>
-    </UserContext.Provider>
+            <Toaster position="top-center" reverseOrder={false} />
+          </div>
+        </SessionContext.Provider>
+      </UserContext.Provider>
+    </BrowserRouter>
   );
 }
 export default App;
