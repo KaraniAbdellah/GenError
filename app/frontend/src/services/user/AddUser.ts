@@ -9,7 +9,6 @@ async function addUser(data: { name: string; email: string }) {
         withCredentials: true,
       }
     );
-    // document.cookie = `user_token=${res.data.user_token}`;
     return true;
   } catch (error) {
     console.log(error);

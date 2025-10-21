@@ -19,6 +19,20 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
+  const NavigateToHOme = (isUserAdded: boolean | null) => {
+    if (isUserAdded) {
+      toast.success("Welcome to GenError", {
+        duration: 2000,
+        position: "bottom-right",
+      });
+      window.location.href = "/";
+    } else {
+      toast.error("Something Wrong Try Again Please", {
+        duration: 2000,
+        position: "bottom-right",
+      });
+    }
+  };
   const SubmitUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data: { name: string; email: string } = {
@@ -26,15 +40,7 @@ export function LoginForm({
       email,
     };
     const isUserAdded = await addUser(data);
-    if (isUserAdded) {
-      window.location.href="/";
-      console.log("We Must Navigate to /");
-    } else {
-      toast.error("Something Wrong Try Again Please", {
-        duration: 2000,
-        position: "bottom-right",
-      });
-    }
+    NavigateToHOme(isUserAdded);
   };
 
   const SubmitUserWithGoogle = async (credentiels: CredentialResponse) => {
@@ -47,14 +53,7 @@ export function LoginForm({
     }
     const data = { name: decoded?.name, email: decoded?.email };
     const isUserAdded = await addUser(data);
-    if (isUserAdded) {
-      window.location.href="/";
-      console.log("We Must Navigate to /");
-    } else
-      toast.error("Something Wrong Try Again Please", {
-        duration: 2000,
-        position: "bottom-right",
-      });
+    NavigateToHOme(isUserAdded);
   };
 
   const [email, setEmail] = useState<string>("");
