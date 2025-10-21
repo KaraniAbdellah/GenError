@@ -6,19 +6,17 @@ import DisplayResultOfMainComponent from "./DisplayResultOfMainComponent";
 import { Session, UserType } from "@/types/UserTypes";
 import SessionContext from "@/context/SessionContext";
 import userContext from "@/context/UserContext";
-import sessionDataDemo from "@/constant/sessionDataDemo";
 
 const Main = () => {
-  const [entry_width, setEntryWidth] = useState(0);
   const [userPrompt, setUserPrompt] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
   const userData: UserType | null = useContext(userContext);
   const [userDemoSession, setUserDemoSession] = useState<Session>();
+  const [sessionData]: Session | null = useContext(SessionContext);
 
   const handleUserPromptChange = (e: FormEvent<HTMLFormElement>) => {
     setUserPrompt(() => e.target.value);
   };
-  const [sessionData]: Session | null = useContext(SessionContext);
 
   const DisplayInput = async () => {
     console.log("Hello Entry");
@@ -26,29 +24,36 @@ const Main = () => {
     setIsLoading(true);
     try {
       const result = await GetThingFromApi(userPrompt);
-      console.log(result);
 
-      const session: Session = {
-        id: "123456789_session_id",
-        session_name: result.title,
-        user_id: "anonymous user",
-        Prompts: [
-          {
-            id: "123456789_prompt_id",
-            prompt_text: userPrompt,
-            session_id: "123456789_session_id",
-            Output: {
-              id: "123456789_output_id",
-              messages: result.messages,
-              explanation: result.explanation,
-              prompt_id: "123456789_prompt_id",
+      if (userData) {
+        console.log(sessionData);
+        if (sessionData) {
+          // We Need to add Prompt and Ouput to the Session {sessionData.id}
+        } else {
+          // We Need to Create Session, Prompts and Outputs
+        }
+      } else {
+        const session: Session = {
+          id: "123456789_session_id",
+          session_name: result.title,
+          user_id: "anonymous user",
+          Prompts: [
+            {
+              id: "123456789_prompt_id",
+              prompt_text: userPrompt,
+              session_id: "123456789_session_id",
+              Output: {
+                id: "123456789_output_id",
+                messages: result.messages,
+                explanation: result.explanation,
+                prompt_id: "123456789_prompt_id",
+              },
             },
-          },
-        ],
-      };
-
-      setUserDemoSession(() => session);
-      setUserPrompt("");
+          ],
+        };
+        setUserDemoSession(() => session);
+        setUserPrompt("");
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {

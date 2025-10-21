@@ -14,6 +14,7 @@ import { Session, UserType } from "./types/UserTypes";
 import { Toaster } from "react-hot-toast";
 import GetUserInformation from "./services/user/GetUserInformation";
 
+
 function App() {
   const [userData, setUserData] = useState<UserType | null>(null);
   const [sessionData, setSessionData] = useState<Session[] | null>();
