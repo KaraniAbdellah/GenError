@@ -30,10 +30,7 @@ export default async function AddPromptOutputToSession(
     { withCredentials: true }
   );
   const promptToPush = res_prompt.data;
-  console.log("Prompt: ", res_prompt.data);
-  console.log("Output: ", res_output.data);
   promptToPush.Output = res_output.data;
-  console.log("Session: ", session);
   session.Prompts.push(promptToPush);
   return session;
 }
