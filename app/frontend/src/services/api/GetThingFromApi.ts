@@ -3,7 +3,7 @@
  * @param  {[string]} promptError [user prompt]
  * @return {[type]}      [return object that contain two attribute {messages and explanation}]
  */
-
+import toast from "react-hot-toast";
 async function GetThingFromApi(promptError: string) {
   const prompt: string = `
     Based on this error: ${promptError}
@@ -53,6 +53,7 @@ async function GetThingFromApi(promptError: string) {
     return result;
   } catch (error) {
     console.log(error);
+    toast.error("Please Refresh The Page and Try Again!");
     return {};
   }
 }

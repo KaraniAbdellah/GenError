@@ -34,5 +34,8 @@ export default async function FirstCreateSession(
     data_output,
     { withCredentials: true }
   );
-  return res_session.data.id;
+  const newSession = res_session.data;
+  newSession.Prompts.push(res_prompt.data);
+  newSession.Prompts[newSession.Prompts.length - 1].Output = res_output.data;
+  return newSession;
 }

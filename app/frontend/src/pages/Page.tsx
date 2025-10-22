@@ -19,7 +19,7 @@ import userContext from "@/context/UserContext";
 import { UserType } from "@/types/UserTypes";
 
 export default function Page() {
-  const userData: UserType | null = useContext(userContext);
+  const [userData, setUserData] = useContext<UserType | null>(userContext);
 
   return (
     <SidebarProvider>

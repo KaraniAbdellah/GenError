@@ -27,7 +27,7 @@ import avatar from "/avatar.webp?url";
 export function SidebarLeft({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
-  const userData: UserType | null = useContext(userContext);
+  const [userData, setUserData] = useContext<UserType | null>(userContext);
   const sessions: Session[] | null = userData?.Sessions || null;
   const userInfo = {
     name: userData?.name || "John",

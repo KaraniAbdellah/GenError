@@ -14,34 +14,44 @@ import GetSessionById from "@/services/user/GetSessionById";
 const Main = () => {
   const [userPrompt, setUserPrompt] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
-  const userData: UserType | null = useContext(userContext);
+  const [userData, setUserData] = useContext<UserType | null>(userContext);
   const [userDemoSession, setUserDemoSession] = useState<Session>();
-  const [sessionData, setSessionData]: Session | null =
-    useContext(SessionContext);
+  const [sessionData, setSessionData] = useContext<Session | null>(
+    SessionContext
+  );
 
   const handleUserPromptChange = (e: FormEvent<HTMLFormElement>) => {
     setUserPrompt(() => e.target.value);
   };
 
   const DisplayInput = async () => {
-    console.log("Hello Entry");
-
     if (!userPrompt.trim() || isLoading) return;
     setIsLoading(true);
     try {
       const result: ResultApiType = await GetThingFromApi(userPrompt);
 
       if (userData) {
-        let session_id: string = sessionData?.id;
+        // We Need to Update UserData --> to show session name
+        // We Need to set Session
         if (!sessionData) {
-          session_id = await FirstCreateSession(result, userPrompt);
-          // We Need to SetSession
+          console.log("Session Data Does not exit");
+          const newSession: Session = await FirstCreateSession(
+            result,
+            userPrompt
+          );
+          setSessionData(() => newSession);
         } else {
-          // We Need to Add To The Update The Session [fetch session and set session]
-          await AddPromptOutputToSession(sessionData, userPrompt, result);
+          console.log("We Need to update Session");
+          const updatedSession: Session = await AddPromptOutputToSession(
+            sessionData,
+            userPrompt,
+            result
+          );
+          setSessionData(() => updatedSession);
         }
         // Fecth The session and set session
-        const sessionToSelect = await GetSessionById(session_id);
+        // const sessionToSelect: Session = await GetSessionById(session_id);
+        // setSessionData(() => sessionToSelect);
       } else {
         const session: Session = {
           id: "123456789_session_id",

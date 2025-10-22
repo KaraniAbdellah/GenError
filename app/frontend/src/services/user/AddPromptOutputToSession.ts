@@ -2,7 +2,11 @@ import ResultApiType from "@/types/ResultApiType";
 import { Session } from "@/types/UserTypes";
 import axios from "axios";
 
-export default async function AddPromptOutputToSession(session: Session, userPrompt: string, result: ResultApiType) {
+export default async function AddPromptOutputToSession(
+  session: Session,
+  userPrompt: string,
+  result: ResultApiType
+) {
   // Create Prompt
   const data_prompt = {
     prompt_text: userPrompt,
@@ -25,4 +29,11 @@ export default async function AddPromptOutputToSession(session: Session, userPro
     data_output,
     { withCredentials: true }
   );
+  const promptToPush = res_prompt.data;
+  console.log("Prompt: ", res_prompt.data);
+  console.log("Output: ", res_output.data);
+  promptToPush.Output = res_output.data;
+  console.log("Session: ", session);
+  session.Prompts.push(promptToPush);
+  return session;
 }

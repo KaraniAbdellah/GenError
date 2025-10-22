@@ -34,7 +34,7 @@ function App() {
   }, []);
   return (
     <BrowserRouter>
-      <UserContext.Provider value={userData}>
+      <UserContext.Provider value={[userData, setUserData]}>
         <SessionContext.Provider value={[sessionData, setSessionData]}>
           <div className="h-screen bg-zinc-800 w-full relative">
             <Routes>
