@@ -50,7 +50,7 @@ export default function Page() {
                   </div>
                 </Link>
               ) : (
-                "Welcome Again @" + userData.name
+                "👏 HI @" + userData.name
               )}
             </div>
           </header>

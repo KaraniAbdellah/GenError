@@ -38,14 +38,14 @@ function App() {
         <SessionContext.Provider value={[sessionData, setSessionData]}>
           <div className="h-screen bg-zinc-800 w-full relative">
             <Routes>
-              <Route element={<PrivateRoutes />}>
+              {/* <Route element={<PrivateRoutes />}> */}
                 <Route path="/" element={<Page />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/help" element={<Help />} />
                 <Route path="/upgrade" element={<UpgradeToPro />} />
                 <Route path="/account" element={<Account />} />
                 <Route path="/login" element={<Login />} />
-              </Route>
+              {/* </Route> */}
             </Routes>
             <Toaster position="top-center" reverseOrder={false} />
           </div>
