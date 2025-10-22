@@ -13,7 +13,8 @@ import { useEffect, useState } from "react";
 import { Session, UserType } from "./types/UserTypes";
 import { Toaster } from "react-hot-toast";
 import GetUserInformation from "./services/user/GetUserInformation";
-
+// import AOS from "aos";
+// import "aos/dist/aos.css";
 
 function App() {
   const [userData, setUserData] = useState<UserType | null>(null);
@@ -27,6 +28,7 @@ function App() {
     }
   }
   useEffect(() => {
+    // AOS.init();
     main();
     return () => {};
   }, []);

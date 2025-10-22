@@ -6,13 +6,18 @@ import DisplayResultOfMainComponent from "./DisplayResultOfMainComponent";
 import { Session, UserType } from "@/types/UserTypes";
 import SessionContext from "@/context/SessionContext";
 import userContext from "@/context/UserContext";
+import FirstCreateSession from "@/services/user/FirstCreateSession";
+import ResultApiType from "@/types/ResultApiType";
+import AddPromptOutputToSession from "@/services/user/AddPromptOutputToSession";
+import GetSessionById from "@/services/user/GetSessionById";
 
 const Main = () => {
   const [userPrompt, setUserPrompt] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
   const userData: UserType | null = useContext(userContext);
   const [userDemoSession, setUserDemoSession] = useState<Session>();
-  const [sessionData]: Session | null = useContext(SessionContext);
+  const [sessionData, setSessionData]: Session | null =
+    useContext(SessionContext);
 
   const handleUserPromptChange = (e: FormEvent<HTMLFormElement>) => {
     setUserPrompt(() => e.target.value);
@@ -20,18 +25,23 @@ const Main = () => {
 
   const DisplayInput = async () => {
     console.log("Hello Entry");
+
     if (!userPrompt.trim() || isLoading) return;
     setIsLoading(true);
     try {
-      const result = await GetThingFromApi(userPrompt);
+      const result: ResultApiType = await GetThingFromApi(userPrompt);
 
       if (userData) {
-        console.log(sessionData);
-        if (sessionData) {
-          // We Need to add Prompt and Ouput to the Session {sessionData.id}
+        let session_id: string = sessionData?.id;
+        if (!sessionData) {
+          session_id = await FirstCreateSession(result, userPrompt);
+          // We Need to SetSession
         } else {
-          // We Need to Create Session, Prompts and Outputs
+          // We Need to Add To The Update The Session [fetch session and set session]
+          await AddPromptOutputToSession(sessionData, userPrompt, result);
         }
+        // Fecth The session and set session
+        const sessionToSelect = await GetSessionById(session_id);
       } else {
         const session: Session = {
           id: "123456789_session_id",
@@ -52,18 +62,14 @@ const Main = () => {
           ],
         };
         setUserDemoSession(() => session);
-        setUserPrompt("");
       }
+      setUserPrompt("");
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
       setIsLoading(false);
     }
   };
-
-  useEffect(() => {
-    return () => {};
-  }, []);
 
   const charCount = userPrompt.length;
   const maxChars = 300;
@@ -79,6 +85,7 @@ const Main = () => {
       </div>
 
       <DisplayResultOfMainComponent
+        data-aos="fade-out"
         session={userData ? sessionData : userDemoSession}
       />
 
