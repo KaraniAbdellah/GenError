@@ -9,9 +9,12 @@ export const addSession: RequestHandler = async (
   res: Response
 ) => {
   try {
+    console.log("Hello from AddSession Controller");
+    console.log(req.body.session_name);
     if (!req.body.session_name) {
-      return res.status(400).send({message: "all attribute required"});
+      return res.status(400).send({ message: "all attribute required" });
     }
+    console.log("Hello from AddSession");
     const user: userType | undefined = req.user;
     if (!user) {
       return res.status(404).send({ message: "user ot found" });

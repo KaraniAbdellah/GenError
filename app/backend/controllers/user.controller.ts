@@ -19,8 +19,8 @@ export const addUser: RequestHandler = async (req: Request, res: Response) => {
     if (user) {
       const token = generateToken(user, res);
       return res
-        .status(409)
-        .send({ user_token: token, message: "user already exit" });
+        .status(200)
+        .send({ user_token: token, message: true });
     }
 
     // Push User to Database

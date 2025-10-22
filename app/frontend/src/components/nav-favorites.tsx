@@ -24,7 +24,7 @@ import SessionContext from "@/context/SessionContext";
 import { Session, UserType } from "@/types/UserTypes";
 import UserContext from "@/context/UserContext";
 
-const INITIAL_DISPLAY_COUNT = 3;
+const INITIAL_DISPLAY_COUNT = 4;
 
 export function NavFavorites({ favorites }: { favorites: Session[] | null }) {
   const { isMobile } = useSidebar();
@@ -35,9 +35,7 @@ export function NavFavorites({ favorites }: { favorites: Session[] | null }) {
   const [showAll, setShowAll] = useState(false);
 
   const getSessionId = (item: Session) => {
-    console.log("Session Clicked is: ", item);
     setSessionData(() => item);
-    console.log(sessionData, "sessionData");
   };
 
   // Determine which favorites to display
@@ -46,7 +44,6 @@ export function NavFavorites({ favorites }: { favorites: Session[] | null }) {
       ? favorites
       : favorites.slice(0, INITIAL_DISPLAY_COUNT)
     : [];
-
   const hasMore = favorites && favorites.length > INITIAL_DISPLAY_COUNT;
 
   return (

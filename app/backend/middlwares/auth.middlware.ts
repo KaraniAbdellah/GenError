@@ -16,7 +16,6 @@ export const authMiddlware: RequestHandler = (
       return res.status(404).json({ message: "Token Does Not Found" });
     }
     const decoded: JwtPayload | string = jwt.verify(token, config.secret_key);
-
     if (!decoded || typeof decoded === "string") {
       return res
         .status(400)
