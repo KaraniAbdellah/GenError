@@ -14,7 +14,6 @@ async function GetUserInformation() {
       { withCredentials: true }
     );
     const userData: UserType = response.data;
-    console.log(userData);
     return userData;
   } catch (error) {
     console.log(error);
