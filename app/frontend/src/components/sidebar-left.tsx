@@ -46,7 +46,7 @@ export function SidebarLeft({
     navMain: [
       {
         title: "Ask AI",
-        url: "#",
+        url: "/",
         icon: Sparkles,
       },
       {
