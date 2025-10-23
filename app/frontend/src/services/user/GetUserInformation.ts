@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 
 async function GetUserInformation() {
   try {
+    console.log(document.cookie);
     const response = await axios.get<UserType>(
       `${import.meta.env.VITE_API_URL}/user/getUser`,
       { withCredentials: true }
