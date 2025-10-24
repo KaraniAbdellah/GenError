@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { Session, UserType } from "./types/UserTypes";
 import { Toaster } from "react-hot-toast";
 import GetUserInformation from "./services/user/GetUserInformation";
+import Loading from "./buit_component/Loading";
 // import AOS from "aos";
 // import "aos/dist/aos.css";
 
@@ -39,6 +40,7 @@ function App() {
           <div className="h-screen bg-zinc-800 w-full relative">
             <Routes>
               {/* <Route element={<PrivateRoutes />}> */}
+              {/* <Route index element={<Loading></Loading>} /> */}
                 <Route path="/" element={<Page />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/help" element={<Help />} />
