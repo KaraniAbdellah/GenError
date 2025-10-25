@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Command, Send } from "lucide-react";
+import { Link } from "react-router";
 
 interface FormData {
   name: string;
@@ -81,7 +82,9 @@ const Help: React.FC = () => {
                 <Command></Command>
               </span>
             </div>
-            <span className="ml-2 text-sm font-medium">GenError V0.1</span>
+            <Link to="/">
+              <span className="ml-2 text-sm font-medium">GenError V0.1</span>
+            </Link>
           </div>
         </div>
       </div>

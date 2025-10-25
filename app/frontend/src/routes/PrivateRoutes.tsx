@@ -6,6 +6,10 @@ const PrivateRoutes = () => {
   const [userData] = useContext(UserContext);
   const location = useLocation();
 
+  if (location.pathname !== "/login" && location.pathname !== "/") {
+    return <Outlet />;
+  }
+
   // if user not logged in and not on /login → redirect to /login
   if (!userData && location.pathname !== "/login") {
     return <Navigate to="/login" replace />;

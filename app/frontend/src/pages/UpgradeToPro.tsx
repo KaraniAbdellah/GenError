@@ -2,6 +2,7 @@ import { JSX, useState } from "react";
 import { Check, Command } from "lucide-react";
 import PricingPlan from "@/types/PricingPlan";
 import { toast } from "react-hot-toast";
+import { Link } from "react-router";
 
 type BillingCycle = "monthly" | "yearly";
 
@@ -69,7 +70,9 @@ export default function UpgradePage(): JSX.Element {
                 <Command></Command>
               </span>
             </div>
-            <span className="ml-2 text-sm font-medium">GenError V0.1</span>
+            <Link to="/">
+              <span className="ml-2 text-sm font-medium">GenError V0.1</span>
+            </Link>
           </div>
         </div>
       </div>
