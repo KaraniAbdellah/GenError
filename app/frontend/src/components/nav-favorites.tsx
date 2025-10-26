@@ -79,29 +79,9 @@ export function NavFavorites({ favorites }: { favorites: Session[] | null }) {
             <DropdownMenu>
               <DropdownMenuTrigger asChild className="cursor-pointer">
                 <SidebarMenuAction showOnHover>
-                  <MoreHorizontal />
                   <span className="sr-only">More</span>
                 </SidebarMenuAction>
               </DropdownMenuTrigger>
-              <DropdownMenuContent
-                className="w-56 rounded-lg"
-                side={isMobile ? "bottom" : "right"}
-                align={isMobile ? "end" : "start"}
-              >
-                <DropdownMenuItem>
-                  <Link className="text-muted-foreground" />
-                  <span>Copy Link</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <ArrowUpRight className="text-muted-foreground" />
-                  <span>Open in New Tab</span>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <Trash2 className="text-muted-foreground" />
-                  <span>Delete</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
             </DropdownMenu>
           </SidebarMenuItem>
         ))}

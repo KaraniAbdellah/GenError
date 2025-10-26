@@ -5,7 +5,7 @@
 
 import axios from "axios";
 import { UserType } from "@/types/UserTypes";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 
 async function GetUserInformation() {
   try {
@@ -18,10 +18,10 @@ async function GetUserInformation() {
     return userData;
   } catch (error) {
     console.log(error);
-    toast.error("Can Not Get Your Data, Please Refresh The Page", {
-      duration: 2000,
-      position: "bottom-right",
-    });
+    // toast.error("Can Not Get Your Data, Please Refresh The Page", {
+    //   duration: 2000,
+    //   position: "bottom-right",
+    // });
     return null;
   }
 }
