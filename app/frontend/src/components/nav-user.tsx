@@ -18,7 +18,11 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { useContext } from "react";
+import userContext from "@/context/UserContext";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export function NavUser({
   user,
@@ -31,6 +35,31 @@ export function NavUser({
   };
 }) {
   const { isMobile } = useSidebar();
+  const [userData, setUserData] = useContext(userContext);
+  const navigate = useNavigate();
+  const LogOut = async () => {
+    setUserData(() => null);
+    console.log(document.cookie);
+    document.cookie =
+      "user_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    navigate("/login");
+    try {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/user/logout`, {
+        withCredentials: true,
+      });
+      toast.success("Log out Successfully", {
+        duration: 2000,
+        position: "bottom-right",
+      });
+      window.location.href = "/";
+    } catch (error) {
+      toast.error("Something Wrong, Try Again!", {
+        duration: 2000,
+        position: "bottom-right",
+      });
+    }
+    // navigate("/");
+  };
 
   return (
     <SidebarMenu className={user.isExit ? "" : "hidden"}>
@@ -81,21 +110,12 @@ export function NavUser({
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <BadgeCheck />
-                <Link to="/account">
-                  <button className="cursor-pointer">Account</button>
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
+            <DropdownMenuGroup></DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <LogOut />
-              <Link to="/login">
-                <button className="cursor-pointer">Log out</button>
-              </Link>
+              <button onClick={() => LogOut()} className="cursor-pointer">
+                Log out
+              </button>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

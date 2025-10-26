@@ -1,6 +1,7 @@
 import { Command } from "lucide-react";
 import { LoginForm } from "@/components/login-form";
 import login_image from "/login_image.webp?url";
+import { Link } from "react-router";
 
 export default function Login() {
   return (
@@ -11,7 +12,7 @@ export default function Login() {
             <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
               <Command className="size-4" />
             </div>
-            GenError
+            <Link to="/">GenError</Link>
           </a>
         </div>
         <div className="flex flex-1 items-center justify-center">

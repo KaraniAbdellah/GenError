@@ -6,16 +6,12 @@ import Help from "./pages/Help";
 import UpgradeToPro from "./pages/UpgradeToPro";
 import Login from "./pages/Login";
 import Account from "./pages/Account";
-import PrivateRoutes from "./routes/PrivateRoutes";
 import UserContext from "@/context/UserContext";
 import SessionContext from "@/context/SessionContext";
 import { useEffect, useState } from "react";
 import { Session, UserType } from "./types/UserTypes";
 import { Toaster } from "react-hot-toast";
 import GetUserInformation from "./services/user/GetUserInformation";
-import Loading from "./buit_component/Loading";
-// import AOS from "aos";
-// import "aos/dist/aos.css";
 
 function App() {
   const [userData, setUserData] = useState<UserType | null>(null);
@@ -29,7 +25,6 @@ function App() {
     }
   }
   useEffect(() => {
-    // AOS.init();
     main();
     return () => {};
   }, []);
@@ -39,15 +34,13 @@ function App() {
         <SessionContext.Provider value={[sessionData, setSessionData]}>
           <div className="h-screen bg-zinc-800 w-full relative">
             <Routes>
-              <Route element={<PrivateRoutes />}>
               {/* <Route index element={<Loading></Loading>} /> */}
-                <Route path="/" element={<Page />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/help" element={<Help />} />
-                <Route path="/upgrade" element={<UpgradeToPro />} />
-                <Route path="/account" element={<Account />} />
-                <Route path="/login" element={<Login />} />
-              </Route>
+              <Route path="/" element={<Page />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/help" element={<Help />} />
+              <Route path="/upgrade" element={<UpgradeToPro />} />
+              <Route path="/account" element={<Account />} />
+              <Route path="/login" element={<Login />} />
             </Routes>
             <Toaster position="top-center" reverseOrder={false} />
           </div>
