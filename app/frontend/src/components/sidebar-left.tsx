@@ -67,7 +67,7 @@ export function SidebarLeft({
         icon: MessageCircleQuestion,
       },
     ],
-    favorites: sessions,
+    favorites: sessions ? [...sessions].reverse() : [],
   };
 
   return (
