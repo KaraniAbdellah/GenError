@@ -18,9 +18,7 @@ export const addUser: RequestHandler = async (req: Request, res: Response) => {
     });
     if (user) {
       const token = generateToken(user, res);
-      return res
-        .status(200)
-        .send({ user_token: token, message: true });
+      return res.status(200).send({ user_token: token, message: true });
     }
 
     // Push User to Database
@@ -89,5 +87,21 @@ export const getUser: RequestHandler = async (req: Request, res: Response) => {
     } else {
       return res.status(500).send({ message: "Unexpected error" + error });
     }
+  }
+};
+
+export const logOut: RequestHandler = async (req: Request, res: Response) => {
+  try {
+    const refreshTokenOptions = {
+      httpOnly: true,
+      secure: true,
+      maxAge: 0,
+      sameSite: "None",
+    };
+    res.clearCookie("user_token", refreshTokenOptions);
+    return res.status(200).send({ message: "Log Out Succeffully" });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send({ message: error.message });
   }
 };
