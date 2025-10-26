@@ -96,11 +96,11 @@ export const logOut: RequestHandler = async (req: Request, res: Response) => {
       httpOnly: true,
       secure: true,
       maxAge: 0,
-      sameSite: "None",
+      sameSite: "none" as const,
     };
     res.clearCookie("user_token", refreshTokenOptions);
-    return res.status(200).send({ message: "Log Out Succeffully" });
-  } catch (error) {
+    return res.status(200).send({ message: "Logged out successfully" });
+  } catch (error: any) {
     console.error(error.message);
     res.status(500).send({ message: error.message });
   }
