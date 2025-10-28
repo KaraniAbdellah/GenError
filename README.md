@@ -1,10 +1,12 @@
+
+
+<div align="center">
+
 a project was a platform to simplify error handling for users.
 Sometimes we get errors like “error.message might be ‘Failed to fetch’,” but we don’t know what message to show to the user.
 I faced this problem many times, and by using free LLM APIs and the MERN stack, I finally found a solution.
 
 
-<div align="center">
-  
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML) 
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS) 
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) 
@@ -68,4 +70,4 @@ nodemon app.ts
 ```
 **NOTE: make sure to have npm and nodejs installed**
 
-
+Build with love by <a src="https://www.linkedin.com/in/abdellah-karani-965928294/">me</a>
