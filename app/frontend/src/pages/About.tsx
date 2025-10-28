@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Mail, Github, Linkedin, Command } from "lucide-react";
 import { Link } from "react-router";
-import me from "../../public/me.jpeg";
+import me from "/me.jpeg?url";
 
 // Mock UserContext for demo - replace with your actual context
 const userContext = {
