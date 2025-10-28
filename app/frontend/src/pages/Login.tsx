@@ -6,14 +6,20 @@ import { Link } from "react-router";
 export default function Login() {
   return (
     <div className="grid min-h-svh lg:grid-cols-2 bg-gray-50">
-      <div className="flex flex-col gap-4 p-6 md:p-10">
-        <div className="flex justify-center gap-2 md:justify-start">
-          <a href="#" className="flex items-center gap-2 font-medium">
-            <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
-              <Command className="size-4" />
+      <div className="flex flex-col gap-4">
+        <div className="border-b border-gray-200 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div className="flex items-center">
+              <div className="w-8 h-8 bg-black rounded flex items-center justify-center">
+                <span className="text-white text-sm font-mono">
+                  <Command></Command>
+                </span>
+              </div>
+              <Link to="/">
+                <span className="ml-2 text-sm font-medium">GenError V0.1</span>
+              </Link>
             </div>
-            <Link to="/">GenError</Link>
-          </a>
+          </div>
         </div>
         <div className="flex flex-1 items-center justify-center">
           <div className="w-full max-w-xs">
