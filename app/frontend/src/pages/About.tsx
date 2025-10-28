@@ -4,7 +4,10 @@ import { Link } from "react-router";
 import me from "../../public/me.jpeg";
 
 // Mock UserContext for demo - replace with your actual context
-const userContext = { name: "Abdellah karani", email: "abdellahkarani@example.com" };
+const userContext = {
+  name: "Abdellah karani",
+  email: "abdellahkarani@example.com",
+};
 
 const Portfolio = () => {
   const [userData] = useState(userContext);
@@ -25,9 +28,10 @@ const Portfolio = () => {
           </div>
         </div>
       </div>
-      <div className="max-w-3xl mx-auto px-6 py-16">
+
+      <div className="max-w-3xl mx-auto px-4 py-10">
         {/* Profile Section */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-4">
           <div className="w-40 h-40 mx-auto mb-6 rounded-full bg-zinc-800 overflow-hidden">
             <img
               src={me}
@@ -41,7 +45,7 @@ const Portfolio = () => {
           </h1>
           <p className="text-zinc-400 mb-6">Software Developer</p>
 
-          <p className="text-zinc-700 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-zinc-700 leading-relaxed max-w-4xl mx-auto">
             Hi there! 👋 After three years of study in university, such as
             networks, compilers, DSA (algorithms and data structures), operating
             systems, and advanced math like algebra and statistics, and
@@ -56,7 +60,7 @@ const Portfolio = () => {
         </div>
 
         {/* Contact Section */}
-        <div className="border-t border-zinc-800 pt-12">
+        <div className=" pt-4">
           <h2 className="text-xl font-semibold mb-6 text-center">
             Get in Touch
           </h2>
