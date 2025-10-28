@@ -20,6 +20,22 @@ I faced this problem many times, and by using free LLM APIs and the MERN stack, 
 
 
 
+## Images
+
+### Login
+<img src="app/images/login.png">
+
+### Home
+<img src="app/images/home1.png">
+<img src="app/images/home2.png">
+
+## Plans
+<img src="app/images/plans.png">
+
+## Help
+<img src="app/images/help.png">
+
+
 ## To Contribute
 
 ### Clone and Setup
