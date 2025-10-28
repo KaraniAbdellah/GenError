@@ -1,0 +1,9 @@
+# Deploy to vercel
+# Good Documentation (context, images, setup, buy me a cofee)
+# Linkedin Posts
+
+
+# change env to ZED
+# what is the next (super app: [UI, Project Study {tools architecture, }, ....])
+
+
