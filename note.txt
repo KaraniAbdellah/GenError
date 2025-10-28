@@ -1,0 +1,9 @@
+My last project was a platform to simplify error handling for users.
+
+Sometimes we get errors like “error.message might be ‘Failed to fetch’,” but we don’t know what message to show to the user.
+
+I faced this problem many times, and by using free LLM APIs and the MERN stack, I finally found a solution.
+
+
+code: https://lnkd.in/eMetxEDC
+
