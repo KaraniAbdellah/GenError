@@ -65,4 +65,4 @@ nodemon app.ts
 ```
 **NOTE: make sure to have npm and nodejs installed**
 
-Build with love by <a src="https://www.linkedin.com/in/abdellah-karani-965928294/">me</a>
+**made with love by <a href="https://www.linkedin.com/in/abdellah-karani-965928294/">ME</a>**
