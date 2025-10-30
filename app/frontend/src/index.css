@@ -3,6 +3,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
+
 html {
     scroll-behavior: smooth;
     font-family: "JetBrains Mono", monospace;
